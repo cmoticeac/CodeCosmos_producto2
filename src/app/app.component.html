@@ -1,0 +1,93 @@
+
+<div class="row">
+  <div class="col-12 text-center">
+    <div class="container">
+      <nav class="navbar navbar-fixed-top navbar-light bg-light border rounded">
+        <a class="navbar-brand" href="#">
+          <img src="../assets/CodeCosmos.png" style="width: 60px; height: 60px;">
+        </a>
+        <div class="mx-auto">
+        <p>Gestor de jugadores</p>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-12 text-center">
+    <div class="container botonespaginainicio">
+      <div class="btn-group">
+        <div class="col-3 text-center linea"></div>
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Equipos
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+            <div class="playerItem" *ngFor="let item of nombreEquipo">
+              <a class="dropdown-item" href="#" (click)="onSelect(item.equipo)"  >{{ item.equipo }}</a>             
+            </div>
+          </div> 
+
+        </div>
+      </div>
+
+      <div class="col-3 text-center linea"></div>       
+      <button type="button" class="btn btn-secondary"(click)="seleccionarJugadores()">Jugadores</button>
+    </div>
+  </div>
+</div>
+ 
+</div>
+
+  
+ 
+<div class="row">
+  <div class="col-12 text-center">
+
+    <!--div class="container detallesequipo">
+    <div class="card bg-light"-->
+          <!-- aqui esta la logica de hidden de las tarjetas-->
+         <!--  al pulsar debe llamar acl componente que carga el equipo deseado    -->
+         
+         <div [hidden]="!componenteVisible">                
+           <app-detail-component [equipoSeleccionado]="equipoSeleccionado"></app-detail-component>              
+         </div>
+
+         
+         <!-- Aqui cuando se pulsa el boton click de judares-->
+         <div [hidden]="!componenteVerJugadores">                  
+           <app-players-component></app-players-component>
+         </div>
+
+  
+
+</div>
+
+
+<!--  pie de los componentes del equipo -->
+<footer>
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="container footerweb">
+        <div class="card text-bg-light">
+            <div class="card-body">
+              <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 text-center linea">
+               <p>Camelia Ancuta Moticeac<br>
+               Sue Cajidos Ros<br>
+               Alejandro Arévalo Rojas<br>
+               Carlos Bravo Serrano<br>
+               Liliana Diaz Ibañez</p>
+              </div>
+
+               <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 text-center linea">
+                <img src="../assets/CodeCosmos.png" style="width: 150px; height: 150px; vertical-align: text-bottom;">
+               </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+

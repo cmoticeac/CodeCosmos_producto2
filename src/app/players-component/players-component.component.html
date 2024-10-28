@@ -1,0 +1,80 @@
+<div class="col-12 text-center">
+  <div class="container busquedajugadores">
+    <div class="card bg-light">
+      <div class="card-header">Búsqueda de Jugadores</div>
+      <div class="card-body">
+          
+          <!-- Sección de búsqueda -->
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center linea">
+            <div class="container busqueda">
+              <div class="card bg-light">
+                <div class="card-header">Buscador</div>
+                <div class="card-body">
+
+                  <!-- Campo para buscar por nombre de jugador -->
+                  <input type="text" [(ngModel)]="searchText" placeholder="Introduce el nombre del jugador">
+                  <br>
+                  <br>
+
+                  <!-- Dropdown para seleccionar la posición -->
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      Posición
+                    </button>
+                    <br>
+                    <br>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#" (click)="posicionSeleccionada = 'Base'">Base</a>
+                      <a class="dropdown-item" href="#" (click)="posicionSeleccionada = 'Escolta'">Escolta</a>
+                      <a class="dropdown-item" href="#" (click)="posicionSeleccionada = 'Alero'">Alero</a>
+                      <a class="dropdown-item" href="#" (click)="posicionSeleccionada = 'Ala-pívot'">Ala-pívot</a>
+                      <a class="dropdown-item" href="#" (click)="posicionSeleccionada = 'Pívot'">Pívot</a>
+                    </div>
+                  </div>
+
+                  <p>Posición seleccionada: {{ posicionSeleccionada }}</p>
+
+                  <!-- Botón para realizar la búsqueda -->
+                  <button type="button" class="btn btn-secondary" (click)="realizarBusqueda()">Buscar jugador</button>
+
+                  <br>
+                  <br>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sección de resultado -->
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center linea" *ngIf="jugadorEncontrado">
+            <div class="jugadores">
+              <div class="card bg-light">
+                <div class="card-header">Jugador encontrado</div>
+                <div class="card-body">
+                  <!-- Botón para cerrar el detalle -->
+                  <button type="button" class="btn btn-secondary" (click)="resetJugadorSeleccionado()">Cerrar</button>
+                  <br>
+                  <br>
+                  <p><i>Nombre:</i> {{ jugadorEncontrado.nombre }}</p>
+                  <p><i>Apellido:</i> {{ jugadorEncontrado.apellido }}</p>
+                  <p><i>Equipo:</i> {{ jugadorEncontrado.equipo }}</p>
+                  <p><i>Posición:</i> {{ jugadorEncontrado.posicion }}</p>
+                  <p><i>Partidos:</i> {{ jugadorEncontrado.partidos }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+          
+          <!-- Mensaje si no se encuentra el jugador -->
+          <div *ngIf="jugadorNoEncontrado">
+            <br>
+            <p>No se encontró ningún jugador con los parámetros seleccionados.</p>
+            <button type="button" class="btn btn-secondary" (click)="resetBusqueda()">Reintentar</button>
+          </div>
+      </div> <!-- Cierra card-body de busqueda de jugadores -->
+    </div> <!-- Cierra card de busqueda de jugadores -->
+  </div> <!-- Cierra container de busquedajugadores -->
+</div> <!-- Cierra col-12 text-center -->
+
+<app-detail-component></app-detail-component>

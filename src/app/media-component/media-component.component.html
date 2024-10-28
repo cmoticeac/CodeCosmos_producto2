@@ -1,0 +1,28 @@
+<h4>Detalles del Jugador: {{ jugadorSeleccionado.nombre }}</h4>
+     <p>Apellido: {{ jugadorSeleccionado.apellido }}</p>
+     <p>Equipo: {{ jugadorSeleccionado.equipo }}</p>
+     <p>Posición: {{ jugadorSeleccionado.posicion }}</p>
+     <p>Partidos: {{ jugadorSeleccionado.partidos }}</p>
+
+<!-- Reproductor de video -->
+<div *ngIf="jugadorSeleccionado">
+  <h4>Video del Jugador: {{ jugadorSeleccionado.nombre }}</h4>
+  <video #videoPlayer width="600" controls>
+    <source src="/assets/video.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+  <br>
+
+  <!-- Controles personalizados -->
+  <button (click)="playVideo(videoPlayer)">Play</button>
+  <button (click)="pauseVideo(videoPlayer)">Pause</button>
+  <button (click)="stopVideo(videoPlayer)">Stop</button>
+
+  <br><br>
+  
+  <!-- Barra de progreso y volumen -->
+  <input type="range" min="0" max="100" (input)="seekVideo(videoPlayer, $event)" />
+  <br>
+  <input type="range" min="0" max="1" step="0.01" (input)="setVolume(videoPlayer, $event)" /> Volumen
+</div>
+

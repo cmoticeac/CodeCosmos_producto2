@@ -1,0 +1,25 @@
+.jugador-nombre {
+    color: blue;  /* El texto será azul */
+    text-decoration: underline;  /* Subrayado para que parezca un enlace */
+    cursor: pointer;  /* Cambia el cursor a "pointer" para indicar que es clicable */
+  }
+  
+  .jugador-nombre:hover {
+    color: darkblue;  /* Cambia el color cuando se pasa el cursor sobre el nombre */
+  }
+  .videopresentacion {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
+    align-items: center;    /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    gap: 10px;               /* Espacio opcional entre el título y el video */
+    width: 100%;             /* Asegura que ocupe todo el ancho del contenedor */
+    text-align: center;      /* Centra el texto dentro del contenedor */
+}
+
+
+.videopresentacion video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que el video cubra completamente el contenedor */
+}
