@@ -1,20 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
-import { BusquedaPipe } from './pipes/busqueda.pipe';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
-import { ListaEquiposComponent } from './lista-equipos/lista-equipos.component';
-import { ServicioCliente } from './servicio-cliente/servicio-cliente.component';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
-  imports: [BrowserModule],
-  providers: [
-    ServicioCliente,
-    provideHttpClient(),
-    importProvidersFrom(AppComponent), // Importa el AppComponent como standalone
-    importProvidersFrom(ListaEquiposComponent), // Importa ListaEquiposComponent como standalone
+  declarations: [
+    AppComponent,
+    // Otros componentes que uses...
   ],
-  //bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    HttpClientModule
+  ],
+  providers: [
+    {
+      provide: provideFirebaseApp,
+      useFactory: () => initializeApp(environment.firebaseConfig),
+    },
+    {
+      provide: provideFirestore,
+      useFactory: () => getFirestore(),
+    },
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
