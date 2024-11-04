@@ -1,29 +1,40 @@
 <div class="col-12 text-center">
   <div class="container player-list">
     <div class="card bg-light">
-      <div class="card-header">Player List</div>
-      <div class="card-body">
-          
-          <!-- Listado de jugadores -->
-          <ul>
-            <li *ngFor="let player of players" (click)="playerFound = player">
-              <p><strong>Name:</strong> {{ player.nombre }}</p>
-              <p><strong>Position:</strong> {{ player.posicion }}</p>
-              <p><strong>Games Played:</strong> {{ player.partidos }}</p>
-            </li>
-          </ul>
-          
-          <!-- Detalles del jugador seleccionado -->
-          <div *ngIf="playerFound">
-            <app-detail-component [selectedPlayer]="playerFound"></app-detail-component>
-          </div>
-
-          <!-- Mensaje si no se encuentra el jugador en la búsqueda -->
-          <div *ngIf="noPlayerFound">
-            <p>No player found with the selected criteria.</p>
-            <button type="button" class="btn btn-secondary" (click)="resetSearch()">Retry</button>
-          </div>
+      <div class="card-header"><div class="col-12 text-center">
+        <div class="container player-list">
+          <div class="card bg-light">
+            <div class="card-header">Basketball Team</div>
+            <div class="card-body">
+              
+              <!-- Grid de jugadores -->
+              <div class="player-grid">
+                <div *ngFor="let player of players" class="player-card">
+                  <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
+                  <p><strong>Name:</strong> {{ player.nombre }}</p>
+                  <p><strong>Last Name:</strong> {{ player.apellido }}</p>
+                  <p><strong>Position:</strong> {{ player.posicion }}</p>
+                </div>
+              </div>
+              
+            </div> <!-- Cierra card-body de la lista de jugadores -->
+          </div> <!-- Cierra card de la lista de jugadores -->
+        </div> <!-- Cierra container de la lista de jugadores -->
+      </div> <!-- Cierra col-12 text-center -->
       </div>
-    </div>
-  </div>
-</div>
+      <div class="card-body">
+        
+        <!-- Grid de jugadores -->
+        <div class="player-grid">
+          <div *ngFor="let player of players" class="player-card">
+            <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
+            <p><strong>Name:</strong> {{ player.nombre }}</p>
+            <p><strong>Last Name:</strong> {{ player.apellido }}</p>
+            <p><strong>Position:</strong> {{ player.posicion }}</p>
+          </div>
+        </div>
+        
+      </div> <!-- Cierra card-body de la lista de jugadores -->
+    </div> <!-- Cierra card de la lista de jugadores -->
+  </div> <!-- Cierra container de la lista de jugadores -->
+</div> <!-- Cierra col-12 text-center -->
