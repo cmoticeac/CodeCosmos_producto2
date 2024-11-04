@@ -15,7 +15,7 @@ export const PLAYER_DATA = [
   },
   {
     "idequipo":1,
-    "equipo": "RL Madrid",
+    "equipo": "AT Madrid",
     "nombre": "Manuel",
     "apellido": "Bosque Roman",
     "edad": 29,
@@ -29,7 +29,7 @@ export const PLAYER_DATA = [
   },
   {
     "idequipo":2,
-    "equipo": "AT Sevilla",
+    "equipo": "AT Madrid",
     "nombre": "Elena",
     "apellido": "Marin López",
     "edad": 24,
@@ -43,7 +43,7 @@ export const PLAYER_DATA = [
   },
   {
     "idequipo":3,
-    "equipo": "AT Barcelona",
+    "equipo": "AT Madrid",
     "nombre": "Luis",
     "apellido": "Fernánez Martínez",
     "edad": 31,
@@ -57,7 +57,7 @@ export const PLAYER_DATA = [
   },
   {
     "idequipo":4,
-    "equipo": "FC Valencia",
+    "equipo": "AT Madrid",
     "nombre": "Ana",
     "apellido": "Sanchez Flores",
     "edad": 27,
@@ -71,7 +71,7 @@ export const PLAYER_DATA = [
   },
   {
     "idequipo":5,
-    "equipo": "AT Bilbao",
+    "equipo": "AT Madrid",
     "nombre": "Pedro",
     "apellido": "Fuentes Bueno",
     "edad": 23,
