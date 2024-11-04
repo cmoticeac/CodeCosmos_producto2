@@ -1,37 +1,40 @@
 <div class="col-12 text-center">
   <div class="container player-list">
     <div class="card bg-light">
-      <div class="card-header"><div class="col-12 text-center">
-        <div class="container player-list">
-          <div class="card bg-light">
-            <div class="card-header">Basketball Team</div>
-            <div class="card-body">
-              
-              <!-- Grid de jugadores -->
-              <div class="player-grid">
-                <div *ngFor="let player of players" class="player-card">
-                  <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
-                  <p><strong>Name:</strong> {{ player.nombre }}</p>
-                  <p><strong>Last Name:</strong> {{ player.apellido }}</p>
-                  <p><strong>Position:</strong> {{ player.posicion }}</p>
-                </div>
-              </div>
-              
-            </div> <!-- Cierra card-body de la lista de jugadores -->
-          </div> <!-- Cierra card de la lista de jugadores -->
-        </div> <!-- Cierra container de la lista de jugadores -->
-      </div> <!-- Cierra col-12 text-center -->
-      </div>
+      <div class="card-header">Player List</div>
       <div class="card-body">
         
-        <!-- Grid de jugadores -->
-        <div class="player-grid">
-          <div *ngFor="let player of players" class="player-card">
+        <!-- Filtros de búsqueda -->
+        <div class="search-filters">
+          <input [(ngModel)]="searchText" placeholder="Search by name" class="form-control mb-2" />
+
+          <!-- Dropdown para seleccionar la posición -->
+          <select [(ngModel)]="searchPosition" class="form-control mb-2">
+            <option value="">All Positions</option>
+            <option *ngFor="let position of positions" [value]="position">
+              {{ position }}
+            </option>
+          </select>
+        </div>
+        
+        <!-- Grid de jugadores (se muestra solo si no hay jugador seleccionado) -->
+        <div *ngIf="!selectedPlayer" class="player-grid">
+          <div *ngFor="let player of players | playerFilter: searchText : searchPosition" 
+               class="player-card" 
+               (click)="selectPlayer(player)">
             <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
             <p><strong>Name:</strong> {{ player.nombre }}</p>
             <p><strong>Last Name:</strong> {{ player.apellido }}</p>
             <p><strong>Position:</strong> {{ player.posicion }}</p>
           </div>
+        </div>
+
+        <!-- Detalle del jugador seleccionado -->
+        <div *ngIf="selectedPlayer" class="player-detail">
+          <app-detail-component 
+            [selectedPlayer]="selectedPlayer" 
+            (closeDetailEvent)="deselectPlayer()">
+          </app-detail-component>
         </div>
         
       </div> <!-- Cierra card-body de la lista de jugadores -->

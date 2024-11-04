@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-detail-component',
@@ -10,8 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class DetailComponent {
   @Input() selectedPlayer: any = null;
+  @Output() closeDetailEvent = new EventEmitter<void>();  // Evento para cerrar el detalle
 
-  resetPlayerSelection() {
-    this.selectedPlayer = null;
+  closeDetail() {
+    this.closeDetailEvent.emit();  // Emitimos el evento para cerrar el detalle
   }
 }
