@@ -1,20 +1,15 @@
-import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { AppComponent } from './app/app.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-
-import { AppComponent } from './app/app.component';
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
-}
+import { firebaseConfig } from './environments/firebase.config';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideRouter(routes),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)), // Usa firebaseConfig aquí sin production
     provideFirestore(() => getFirestore())
   ]
 }).catch(err => console.error(err));
