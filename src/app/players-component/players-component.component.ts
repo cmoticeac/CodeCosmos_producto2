@@ -1,89 +1,53 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngModel
+import { FormsModule } from '@angular/forms';
 import { DetailComponent } from '../detail-component/detail-component.component';
-import { BusquedaPipe } from '../pipes/busqueda.pipe'; // Importa el Pipe de búsqueda
+import { BusquedaPipe } from '../pipes/busqueda.pipe';
+import { PLAYER_DATA } from '../../data/data';  // Importamos los datos directamente
+import { Player } from '../models/players.model';  // Importamos la interfaz Player
 
 @Component({
   selector: 'app-players-component',
   standalone: true,
-  imports: [CommonModule, FormsModule, DetailComponent, BusquedaPipe], // Añade el Pipe aquí
+  imports: [CommonModule, FormsModule, DetailComponent, BusquedaPipe],
   templateUrl: './players-component.component.html',
   styleUrls: ['./players-component.component.css'],
 })
 export class PlayersComponent implements OnInit {
   posicionSeleccionada: string = '';
   searchText: string = '';
-  datos: any[] = []; // Aquí almacenaremos los jugadores del JSON
-  jugadorEncontrado: any = null;
-  jugadorNoEncontrado: boolean = false;
-  equipoSeleccionado: string = '';
-
+  players: Player[] = PLAYER_DATA; // Usamos el tipo Player[]
+  playerFound: Player | null = null;
+  noPlayerFound: boolean = false;
 
   ngOnInit(): void {
-    // Cargar los datos usando fetch
-    fetch('data/datos-equipos.json')
-      .then((response) => response.json())
-      .then((data) => {
-        this.datos = data; // Asigna los datos del archivo JSON a la variable 'datos'
-      })
-      .catch((error) =>
-        console.error('Error al cargar los datos del JSON:', error)
-      );
+    // No es necesario cargar datos, ya están en PLAYER_DATA
   }
 
   // Método para realizar la búsqueda
- /* realizarBusqueda() {
-    const resultado = this.datos.filter(
-      (jugador) =>
-        jugador.nombre.toLowerCase().includes(this.searchText.toLowerCase()) &&
-        jugador.posicion.toLowerCase() ===
-          this.posicionSeleccionada.toLowerCase()
-    );
+  performSearch() {
+    const result = this.players.filter((player: Player) => {
+      const nameMatch = player.nombre.toLowerCase().includes(this.searchText.toLowerCase());
+      const positionMatch = this.posicionSeleccionada ? 
+                            player.posicion.toLowerCase() === this.posicionSeleccionada.toLowerCase() : 
+                            true;
+      return nameMatch && positionMatch;
+    });
 
-    if (resultado.length > 0) {
-      this.jugadorEncontrado = resultado[0]; // Si se encuentra, mostramos el primer jugador
-      this.jugadorNoEncontrado = false;
+    if (result.length > 0) {
+      this.playerFound = result[0];
+      this.noPlayerFound = false;
     } else {
-      this.jugadorEncontrado = null;
-      this.jugadorNoEncontrado = true;
+      this.playerFound = null;
+      this.noPlayerFound = true;
     }
-  } */
-
-    realizarBusqueda() {
-      const resultado = this.datos.filter((jugador) => {
-        const nombreCoincide = jugador.nombre.toLowerCase().includes(this.searchText.toLowerCase());
-        const posicionCoincide = this.posicionSeleccionada ? 
-                                 jugador.posicion.toLowerCase() === this.posicionSeleccionada.toLowerCase() : 
-                                 true;  // Si no hay posición seleccionada, siempre será true
-    
-        return nombreCoincide && posicionCoincide;
-      });
-    
-      if (resultado.length > 0) {
-        this.jugadorEncontrado = resultado[0];  // Si se encuentra, mostramos el primer jugador
-        this.jugadorNoEncontrado = false;
-      } else {
-        this.jugadorEncontrado = null;
-        this.jugadorNoEncontrado = true;
-      }
-    }
-    
-    seleccionarEquipo(equipo: string) {
-    this.equipoSeleccionado = equipo; // Aquí pasamos el equipo seleccionado
-    this.resetJugadorSeleccionado(); // Resetea el jugador seleccionado al cambiar de equipo
   }
 
   // Método para resetear la búsqueda
-  resetBusqueda() {
+  resetSearch() {
     this.searchText = '';
     this.posicionSeleccionada = '';
-    this.jugadorEncontrado = null;
-    this.jugadorNoEncontrado = false;
-  }
-
-  // Método para resetear el jugador seleccionado
-  resetJugadorSeleccionado() {
-    this.jugadorEncontrado = null;
+    this.playerFound = null;
+    this.noPlayerFound = false;
   }
 }
