@@ -1,12 +1,17 @@
 import {
+  FirebaseApp,
+  VERSION,
+  ɵgetAllInstancesOf,
+  ɵgetDefaultInstanceOf,
+  ɵzoneWrap
+} from "./chunk-H3WR6QZQ.js";
+import {
   Component,
   ErrorFactory,
-  FirebaseApp,
   FirebaseError,
   LogLevel,
   Logger,
   SDK_VERSION,
-  VERSION,
   _getProvider,
   _isFirebaseServerApp,
   _registerComponent,
@@ -27,11 +32,8 @@ import {
   isReactNative,
   querystring,
   querystringDecode,
-  registerVersion,
-  ɵgetAllInstancesOf,
-  ɵgetDefaultInstanceOf,
-  ɵzoneWrap
-} from "./chunk-XBPDBFRV.js";
+  registerVersion
+} from "./chunk-LNVSON2M.js";
 import {
   InjectionToken,
   NgModule,
@@ -39,19 +41,21 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-CTLHRHKE.js";
+} from "./chunk-UGZ7OVIK.js";
 import {
   Observable,
-  __async,
   __rest,
-  __superGet,
   concatMap,
   distinct,
   from,
   of,
   switchMap,
   timer
-} from "./chunk-R6OTE4YD.js";
+} from "./chunk-6S2NBUWN.js";
+import {
+  __async,
+  __superGet
+} from "./chunk-5K356HEJ.js";
 
 // node_modules/@firebase/auth/dist/esm2017/index-68602d24.js
 function _prodErrorMap() {
@@ -7585,4 +7589,4 @@ rxfire/auth/index.esm.js:
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-CGXBW6BA.js.map
+//# sourceMappingURL=chunk-T4LN7TI5.js.map

@@ -9,6 +9,7 @@ import { Player } from '../models/players.model';
 })
 export class PlayerService {
   constructor(private db: Database) {}
+  
 
   getPlayers(): Observable<Player[]> {
     const dbRef = ref(this.db);

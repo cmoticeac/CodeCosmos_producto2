@@ -1,18 +1,3 @@
-import {
-  FirebaseApp,
-  FirebaseAppModule,
-  FirebaseApps,
-  deleteApp,
-  firebaseApp$,
-  getApp,
-  getApps,
-  initializeApp,
-  initializeServerApp,
-  onLog,
-  provideFirebaseApp,
-  registerVersion,
-  setLogLevel
-} from "./chunk-H3WR6QZQ.js";
 import "./chunk-7O4RGM5B.js";
 import {
   DEFAULT_ENTRY_NAME,
@@ -28,17 +13,18 @@ import {
   _isFirebaseServerApp,
   _registerComponent,
   _removeServiceInstance,
-  _serverApps
+  _serverApps,
+  deleteApp,
+  getApp,
+  getApps,
+  initializeApp,
+  initializeServerApp,
+  onLog,
+  registerVersion,
+  setLogLevel
 } from "./chunk-LNVSON2M.js";
-import "./chunk-UGZ7OVIK.js";
-import "./chunk-XMA4SSZI.js";
-import "./chunk-MPVDVMUL.js";
-import "./chunk-6S2NBUWN.js";
 import "./chunk-5K356HEJ.js";
 export {
-  FirebaseApp,
-  FirebaseAppModule,
-  FirebaseApps,
   FirebaseError,
   SDK_VERSION,
   DEFAULT_ENTRY_NAME as _DEFAULT_ENTRY_NAME,
@@ -54,14 +40,12 @@ export {
   _removeServiceInstance,
   _serverApps,
   deleteApp,
-  firebaseApp$,
   getApp,
   getApps,
   initializeApp,
   initializeServerApp,
   onLog,
-  provideFirebaseApp,
   registerVersion,
   setLogLevel
 };
-//# sourceMappingURL=@angular_fire_app.js.map
+//# sourceMappingURL=firebase_app.js.map
