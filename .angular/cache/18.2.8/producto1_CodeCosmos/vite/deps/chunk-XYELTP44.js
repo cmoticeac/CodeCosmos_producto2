@@ -34,12 +34,12 @@ import {
   stringLength,
   stringToByteArray,
   stringify
-} from "./chunk-LNVSON2M.js";
+} from "./chunk-7EG3QRLR.js";
 import {
   __async
-} from "./chunk-5K356HEJ.js";
+} from "./chunk-35ENWJA4.js";
 
-// node_modules/firebase/node_modules/@firebase/database/dist/index.esm2017.js
+// node_modules/@firebase/database/dist/index.esm2017.js
 var name = "@firebase/database";
 var version = "1.0.8";
 var SDK_VERSION2 = "";
@@ -9955,4 +9955,4 @@ export {
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-QJ5QMQE7.js.map
+//# sourceMappingURL=chunk-XYELTP44.js.map
