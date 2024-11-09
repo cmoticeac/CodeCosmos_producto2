@@ -2,7 +2,7 @@
 
 <div class="col-12 text-center">
   <div class="container player-list">
-    <div class="card bg-light">
+    <div class="card">
       <div class="card-header">Player List</div>
       <div class="card-body">
         
@@ -18,6 +18,8 @@
             </option>
           </select>
         </div>
+
+        <button type="button" class="btn btn-primary">Test Color Button</button>
         
         <!-- Grid de jugadores (se muestra solo si no hay jugador seleccionado) -->
         <div *ngIf="!selectedPlayer" class="player-grid">

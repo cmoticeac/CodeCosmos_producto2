@@ -1,10 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   padding-top: 45px;
+  background-color: #7AB2D3;
 }
+
 nav {
-  border-color: darkgray;
+  border-color: #B9E5E8;
+  background-color: #DFF2EB;
 }
+
+.card {
+  border-color: #B9E5E8;
+  background-color: #DFF2EB;
+}
+
+.btn {
+  border-color: #7AB2D3;
+  background-color: #4A628A;
+}
+
 .botonespaginainicio {
   padding-top: 35px;
 }
