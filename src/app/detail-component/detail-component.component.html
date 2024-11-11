@@ -1,12 +1,37 @@
 <div *ngIf="selectedPlayer">
-  <button type="button" class="btn btn-secondary" (click)="closeDetail()">Close</button>
-  <h4>Detalles del Jugador: {{ selectedPlayer.nombre }} {{ selectedPlayer.apellido }}</h4>
+  <div class="card">
+    <div class="card-header">Detalles del Jugador:</div>
+    <div class="card-body">
+      <div class="player-card">
+        <div class="mb-3 row">
+          <!-- Campos editables -->
+          <label class="col-sm-3 col-form-label">Name:</label>
+          <div class="col-sm-9">
+            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.nombre" class="form-control" placeholder="Name" />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Last Name:</label>
+          <div class="col-sm-9">
+            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.apellido" class="form-control"
+              placeholder="Last Name">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Position:</label>
+          <div class="col-sm-9">
+            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.posicion" class="form-control"
+              placeholder="Position">
+          </div>
+        </div>
 
-  <!-- Campos editables -->
-  <input [(ngModel)]="selectedPlayer.nombre" placeholder="Name">
-  <input [(ngModel)]="selectedPlayer.apellido" placeholder="Last Name">
-  <input [(ngModel)]="selectedPlayer.posicion" placeholder="Position">
+        <!-- Botón de guardar -->
+        <!-- Selección para editar -->
+        <button *ngIf="readonly" type="button" class="btn btn-success" (click)="toggleEdit()">Edit</button>
 
-  <!-- Botón de guardar -->
-  <button type="button" class="btn btn-success" (click)="savePlayer()">Save</button>
+        <button *ngIf="!readonly" type="button" class="btn btn-success" (click)="savePlayer()">Save</button>
+        <button type="button" class="btn btn-success" (click)="closeDetail()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

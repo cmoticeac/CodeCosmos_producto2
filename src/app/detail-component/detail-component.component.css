@@ -8,6 +8,20 @@
   color: darkblue;
 }
 
+.player-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  min-width: 700px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input:read-only {
+  background-color: #e0e0e0; /* Light grey */
+  cursor: not-allowed; /* Optional: Change cursor to indicate non-editable */
+}
 .video-container {
   display: flex;
   flex-direction: column;

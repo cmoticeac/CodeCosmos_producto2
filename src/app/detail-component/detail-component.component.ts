@@ -13,9 +13,14 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule
   styleUrls: ['./detail-component.component.css'],
 })
 export class DetailComponent {
+  toggleEdit() {
+    this.readonly = !this.readonly;
+  }
+  
   @Input() selectedPlayer: any = null;
   @Output() closeDetailEvent = new EventEmitter<void>();
   @Output() savePlayerEvent = new EventEmitter<any>();
+  readonly: boolean = true;
 
   closeDetail() {
     this.closeDetailEvent.emit();
