@@ -27019,6 +27019,7 @@ if (typeof ngDevMode !== "undefined" && ngDevMode) {
 }
 
 export {
+  SIGNAL,
   Subscription,
   pipe,
   Observable,
@@ -27068,7 +27069,6 @@ export {
   takeUntil,
   tap,
   withLatestFrom,
-  SIGNAL,
   XSS_SECURITY_URL,
   RuntimeError,
   formatRuntimeError,
@@ -27581,4 +27581,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-MWMLXXGO.js.map
+//# sourceMappingURL=chunk-ZKL6ZUTH.js.map

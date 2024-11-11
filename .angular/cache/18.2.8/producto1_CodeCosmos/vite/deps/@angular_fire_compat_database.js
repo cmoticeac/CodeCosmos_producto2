@@ -1,30 +1,3 @@
-import "./chunk-UV2BQ6X2.js";
-import {
-  FIREBASE_APP_NAME,
-  FIREBASE_OPTIONS,
-  ɵapplyMixins,
-  ɵcacheInstance,
-  ɵfirebaseAppFactory,
-  ɵlazySDKProxy
-} from "./chunk-I6IB7FEY.js";
-import {
-  firebase
-} from "./chunk-ARMIPHK3.js";
-import "./chunk-UXNI2VDG.js";
-import {
-  FirebaseApp
-} from "./chunk-QUVGHAOW.js";
-import {
-  VERSION,
-  keepUnstableUntilFirst,
-  ɵAPP_CHECK_PROVIDER_NAME,
-  ɵAngularFireSchedulers,
-  ɵAppCheckInstances,
-  ɵgetAllInstancesOf,
-  ɵgetDefaultInstanceOf,
-  ɵzoneWrap
-} from "./chunk-NB3A36LM.js";
-import "./chunk-PFEPKP7F.js";
 import {
   OnDisconnect,
   QueryImpl,
@@ -72,30 +45,35 @@ import {
   validatePathString,
   validateWritablePath
 } from "./chunk-XYELTP44.js";
+import "./chunk-TFG3XSFO.js";
 import {
-  Component,
-  ComponentContainer,
-  Deferred,
-  ErrorFactory,
-  Logger,
-  Provider,
-  _getProvider,
-  _registerComponent,
-  base64,
-  errorPrefix,
-  getApp,
-  getGlobal,
-  getModularInstance,
-  isIndexedDBAvailable,
-  registerVersion,
-  uuidv4,
-  validateArgCount,
-  validateCallback,
-  validateContextObject
-} from "./chunk-7EG3QRLR.js";
+  FIREBASE_APP_NAME,
+  FIREBASE_OPTIONS,
+  ɵapplyMixins,
+  ɵcacheInstance,
+  ɵfirebaseAppFactory,
+  ɵlazySDKProxy
+} from "./chunk-OKEY5I7U.js";
+import {
+  firebase
+} from "./chunk-ARMIPHK3.js";
+import "./chunk-J535D2E7.js";
+import {
+  FirebaseApp
+} from "./chunk-5WOXCDLW.js";
+import {
+  VERSION,
+  keepUnstableUntilFirst,
+  ɵAPP_CHECK_PROVIDER_NAME,
+  ɵAngularFireSchedulers,
+  ɵAppCheckInstances,
+  ɵgetAllInstancesOf,
+  ɵgetDefaultInstanceOf,
+  ɵzoneWrap
+} from "./chunk-5W7HWRYD.js";
 import {
   isPlatformServer
-} from "./chunk-E7QYZ2HH.js";
+} from "./chunk-ZGQ7RQJI.js";
 import {
   Inject,
   Injectable,
@@ -131,8 +109,30 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-MWMLXXGO.js";
+} from "./chunk-ZKL6ZUTH.js";
 import "./chunk-NTERNHDG.js";
+import "./chunk-PFEPKP7F.js";
+import {
+  Component,
+  ComponentContainer,
+  Deferred,
+  ErrorFactory,
+  Logger,
+  Provider,
+  _getProvider,
+  _registerComponent,
+  base64,
+  errorPrefix,
+  getApp,
+  getGlobal,
+  getModularInstance,
+  isIndexedDBAvailable,
+  registerVersion,
+  uuidv4,
+  validateArgCount,
+  validateCallback,
+  validateContextObject
+} from "./chunk-7EG3QRLR.js";
 import {
   __async,
   __spreadValues
@@ -1063,7 +1063,7 @@ var AngularFireAuth = class _AngularFireAuth {
   credential;
   constructor(options, name3, platformId, zone, schedulers, useEmulator, settings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
     const logins = new Subject();
-    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-YRWDDI2F.js"))), map(() => ɵfirebaseAppFactory(options, zone, name3)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
+    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-CVQDWXDH.js"))), map(() => ɵfirebaseAppFactory(options, zone, name3)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
       bufferSize: 1,
       refCount: false
     }));
