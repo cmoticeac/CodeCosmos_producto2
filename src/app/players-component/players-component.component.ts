@@ -23,7 +23,7 @@ import { firebaseConfig } from '../../environments/firebase.config';
 export class PlayersComponent implements OnInit, OnChanges { 
   players: Player[] = [];
   selectedPlayer: Player | null = null;
-  newPlayer: Player = { idequipo: '', nombre: '', apellido: '', altura: '', posicion: '' , img1: '', img2: '', video:'', equipo: '', edad: 0, sexo: '', partidos: 0};
+  newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '' , img1: '', img2: '', video:'', edad: 0, sexo: '', partidos: 0};
   searchText: string = '';
   searchPosition: string = '';
    @Input() inputBDData: any; 
@@ -74,7 +74,7 @@ export class PlayersComponent implements OnInit, OnChanges {
     }
   } 
 
-  // CRUD: Cargar jugadores desde Firebase
+  // CRUD: Cargar jugadores desde Firebase 
   loadPlayers(): void {
     this.firebaseService.getPlayers().subscribe(players => {
       this.players = players;
@@ -82,19 +82,29 @@ export class PlayersComponent implements OnInit, OnChanges {
   }
 
   // CRUD: Añadir un nuevo jugador
+  // Agregar un nuevo jugador
   addPlayer(): void {
-    if (this.newPlayer.nombre && this.newPlayer.apellido && this.newPlayer.posicion) {
-      this.firebaseService.addPlayer(this.newPlayer).then(() => {
-        this.newPlayer = { idequipo: '', nombre: '', apellido: '', altura: '', posicion: '' , img1: '', img2: '', video:'', equipo: '', edad: 0, sexo: '', partidos: 0 };
-        this.loadPlayers(); // Recargar sta de jugadores
-      });
-    }
+    this.firebaseService.addPlayer(this.newPlayer).then(() => {
+      this.loadPlayers();
+      this.newPlayerForm(); // Resetear el formulario de nuevo jugador
+    });
   }
 
    // CRUD: Eliminar un jugador
-   deletePlayer(playerId: string): void {
+   deletePlayer(playerId: number): void {
     this.firebaseService.deletePlayer(playerId).then(() => {
       this.loadPlayers(); // Recargar lista de jugadores
+      });
+    }
+    newPlayerForm(): void {
+      this.selectedPlayer = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0 };
+    }
+
+      // Actualizar un jugador
+  updatePlayers(player: Player): void {
+    this.firebaseService.updatePlayer(player).then(() => {
+      this.loadPlayers();
+      this.deselectPlayer();
     });
   }
 

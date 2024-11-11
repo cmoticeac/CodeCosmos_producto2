@@ -1,22 +1,12 @@
 <div *ngIf="selectedPlayer">
   <button type="button" class="btn btn-secondary" (click)="closeDetail()">Close</button>
-  <br><br>
   <h4>Detalles del Jugador: {{ selectedPlayer.nombre }} {{ selectedPlayer.apellido }}</h4>
-  <img [src]="selectedPlayer.img1" alt="{{ selectedPlayer.nombre }} Imagen 1" width="200px" class="rounded">
-  <img [src]="selectedPlayer.img2" alt="{{ selectedPlayer.nombre }} Imagen 2" width="200px" class="rounded">
-  <br><br>
-  <p><strong>Team:</strong> {{ selectedPlayer.equipo }}</p>
-  <p><strong>Age:</strong> {{ selectedPlayer.edad }}</p>
-  <p><strong>Position:</strong> {{ selectedPlayer.posicion }}</p>
-  <p><strong>Height:</strong> {{ selectedPlayer.altura }}</p>
-  <p><strong>Games Played:</strong> {{ selectedPlayer.partidos }}</p>
 
-  <div class="video-container">
-    <h4>Video Presentation</h4>
-    <video width="100%" controls>
-      <source [src]="selectedPlayer.video" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <br>
+  <!-- Campos editables -->
+  <input [(ngModel)]="selectedPlayer.nombre" placeholder="Name">
+  <input [(ngModel)]="selectedPlayer.apellido" placeholder="Last Name">
+  <input [(ngModel)]="selectedPlayer.posicion" placeholder="Position">
+
+  <!-- Botón de guardar -->
+  <button type="button" class="btn btn-success" (click)="savePlayer()">Save</button>
 </div>
