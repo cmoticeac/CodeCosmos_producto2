@@ -3,7 +3,7 @@ import {
 } from "./chunk-ARMIPHK3.js";
 import {
   VERSION as VERSION2
-} from "./chunk-F7O7ZNNE.js";
+} from "./chunk-SIIMH62L.js";
 import {
   Inject,
   InjectionToken,
@@ -17,7 +17,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-ZKL6ZUTH.js";
+} from "./chunk-YOYM6UUN.js";
 
 // node_modules/firebase/compat/app/dist/esm/index.esm.js
 var name = "firebase";
@@ -206,4 +206,4 @@ firebase/compat/app/dist/esm/index.esm.js:
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-JXHIFBH6.js.map
+//# sourceMappingURL=chunk-4VUVG6RL.js.map

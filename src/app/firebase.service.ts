@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, collection, collectionData, addDoc, doc, setDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Player } from '../app/models/players.model';
 
@@ -9,29 +9,33 @@ import { Player } from '../app/models/players.model';
 export class FirebaseService {
   private collectionPath = 'players'; // Ruta de la colección en Firestore
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: Firestore) {}
 
   // Obtener todos los jugadores
   getPlayers(): Observable<Player[]> {
-    return this.firestore.collection<Player>(this.collectionPath).valueChanges({ idField: 'idequipo' });
+    const playersCollection = collection(this.firestore, this.collectionPath);
+    return collectionData(playersCollection, { idField: 'idequipo' }) as Observable<Player[]>;
   }
 
   // Agregar un nuevo jugador
-  addPlayer(player: Player): Promise<void> {
-    const id = this.firestore.createId(); // Crea un ID único para el jugador
-    return this.firestore.collection(this.collectionPath).doc(id).set({ ...player, id });
+  async addPlayer(player: Player): Promise<void> {
+    const playersCollection = collection(this.firestore, this.collectionPath);
+    await addDoc(playersCollection, player);
   }
 
   // Actualizar un jugador existente
-  updatePlayer(player: Player): Promise<void> {
-    return this.firestore.collection(this.collectionPath).doc(player.idequipo).update(player);
+  async updatePlayer(player: Player): Promise<void> {
+    const playerDoc = doc(this.firestore, `${this.collectionPath}/${player.idequipo}`);
+    await updateDoc(playerDoc, { ...player });
   }
 
   // Eliminar un jugador
-  deletePlayer(playerId: string): Promise<void> {
-    return this.firestore.collection(this.collectionPath).doc(playerId).delete();
+  async deletePlayer(playerId: string): Promise<void> {
+    const playerDoc = doc(this.firestore, `${this.collectionPath}/${playerId}`);
+    await deleteDoc(playerDoc);
   }
 }
+
 /*
 import { Injectable } from '@angular/core';
 

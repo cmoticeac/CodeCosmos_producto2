@@ -19,10 +19,15 @@ import { FirebaseService } from './firebase.service';
 @Component({
   selector: 'app-root',
   standalone: true,
- 
   imports: [ 
-    RouterOutlet,  PlayersComponent,    DetailComponent,  MediaComponent, 
-    InicioComponent,  CommonModule,  PlayerFilterPipe, AngularFireDatabaseModule, 
+    RouterOutlet,  
+    PlayersComponent,    
+    DetailComponent,  
+    MediaComponent, 
+    InicioComponent,  
+    CommonModule,  
+    PlayerFilterPipe, 
+    AngularFireDatabaseModule, 
   ],
  
   providers: [FirebaseService],
