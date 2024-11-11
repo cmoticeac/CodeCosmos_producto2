@@ -22,6 +22,7 @@
     "@firebase/database": "^1.0.9",
     "angular-in-memory-web-api": "^0.18.0",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "firebase": "^10.14.1",
     "producto1-code-cosmos": "file:",
     "rxjs": "~7.8.0",
