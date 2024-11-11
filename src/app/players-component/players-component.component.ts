@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DetailComponent } from '../detail-component/detail-component.component';
 import { PlayerFilterPipe } from '../pipes/player-filter.pipe';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-players-component',
@@ -18,7 +19,91 @@ import { PlayerFilterPipe } from '../pipes/player-filter.pipe';
   templateUrl: './players-component.component.html',
   styleUrls: ['./players-component.component.css'],
 })
-export class PlayersComponent implements OnInit, OnChanges { 
+
+export class PlayersComponent implements OnInit, OnChanges, AfterViewInit {
+  @Input() inputBDData: any;
+  
+  players: Player[] = [];
+  selectedPlayer: Player | null = null;
+  newPlayer: Player = { id: '', nombre: '', apellido: '', altura: 0, posicion: '' };
+  valueChange: any;   // Variable para mostrar el tipo de dato recibido
+  searchText: string = '';
+  searchPosition: string = '';
+  
+  positions: string[] = ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot'];
+
+  constructor(private firebaseService: FirebaseService) {}
+
+  ngOnInit(): void {
+    this.valueChange = this.inputBDData;
+    this.loadPlayers(); // Cargar jugadores al iniciar
+  }
+
+  ngAfterViewInit() {
+    console.log("Valores de jugadores pasados desde el padre:");
+    for (const playerId in this.inputBDData) {
+      if (this.inputBDData.hasOwnProperty(playerId)) {
+        const player = this.inputBDData[playerId];
+        console.log(`Player ${playerId}:`, player);
+      } else {
+        console.log("Error al procesar jugadores");
+      }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['inputBDData']) {
+      this.valueChange = typeof changes['inputBDData'].currentValue;
+      this.inputBDData = changes['inputBDData'].currentValue;
+    }
+  }
+
+  // CRUD: Cargar jugadores desde Firebase
+  loadPlayers(): void {
+    this.firebaseService.getPlayers().subscribe(players => {
+      this.players = players;
+    });
+  }
+
+  // Seleccionar un jugador para editar
+  selectPlayer(player: Player): void {
+    this.selectedPlayer = { ...player }; // Crear una copia para editar sin modificar original
+  }
+
+  // Deseleccionar el jugador actual
+  deselectPlayer(): void {
+    this.selectedPlayer = null;
+  }
+
+  // CRUD: Añadir un nuevo jugador
+  addPlayer(): void {
+    if (this.newPlayer.nombre && this.newPlayer.apellido && this.newPlayer.posicion) {
+      this.firebaseService.addPlayer(this.newPlayer).then(() => {
+        this.newPlayer = { id: '', nombre: '', apellido: '', altura: 0, posicion: '' };
+        this.loadPlayers(); // Recargar lista de jugadores
+      });
+    }
+  }
+
+  // CRUD: Guardar cambios del jugador seleccionado
+  savePlayer(): void {
+    if (this.selectedPlayer) {
+      this.firebaseService.updatePlayer(this.selectedPlayer).then(() => {
+        this.deselectPlayer();
+        this.loadPlayers(); // Recargar lista de jugadores
+      });
+    }
+  }
+
+  // CRUD: Eliminar un jugador
+  deletePlayer(playerId: string): void {
+    this.firebaseService.deletePlayer(playerId).then(() => {
+      this.loadPlayers(); // Recargar lista de jugadores
+    });
+  }
+}
+
+/*export class PlayersComponent implements OnInit, OnChanges { 
   players: Player[] = [];
   selectedPlayer: Player | null = null;
   searchText: string = '';
@@ -63,10 +148,10 @@ export class PlayersComponent implements OnInit, OnChanges {
     this.selectedPlayer = null;
   }
   
-  /**
-   * este evento cada vez que hay un cambio recibido del app.componet( Es el padre)
-   * @param changes 
-   */
+  
+   este evento cada vez que hay un cambio recibido del app.componet( Es el padre)
+   @param changes 
+   
   ngOnChanges(changes: SimpleChanges) {
     if (changes['receivedVariable']) {
     
@@ -76,15 +161,15 @@ export class PlayersComponent implements OnInit, OnChanges {
      
 
       // Puedes realizar cualquier otro tratamiento aquí
-      /*console.log("entra cada vez que recibe o cambia valor");
+      console.log("entra cada vez que recibe o cambia valor");
       console.log('Nuevo valor recibido:', newValue);
-      console.log('Tipo de la variable recibida:', this.inputBDData);*/
+      console.log('Tipo de la variable recibida:', this.inputBDData);
     }
 
   }  
 
 
 
-}  // CIERRE CLASS
+} */ // CIERRE CLASS
  
 
