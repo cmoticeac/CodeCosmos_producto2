@@ -14,7 +14,7 @@ import {
   tap,
   ɵɵdefineInjectable,
   ɵɵinject
-} from "./chunk-ZKL6ZUTH.js";
+} from "./chunk-MWMLXXGO.js";
 
 // node_modules/@angular/fire/fesm2022/angular-fire.mjs
 var VERSION = new Version("ANGULARFIRE2_VERSION");
@@ -223,4 +223,4 @@ export {
   keepUnstableUntilFirst,
   ɵzoneWrap
 };
-//# sourceMappingURL=chunk-F7O7ZNNE.js.map
+//# sourceMappingURL=chunk-NB3A36LM.js.map

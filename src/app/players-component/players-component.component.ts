@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
-
+//import { PlayerService } from '../services/player.service';
 import { Player } from '../models/players.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DetailComponent } from '../detail-component/detail-component.component';
 import { PlayerFilterPipe } from '../pipes/player-filter.pipe';
-import { FirebaseService } from '../../app/firebase.service';
-
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-players-component',
@@ -26,7 +25,7 @@ export class PlayersComponent implements OnInit, OnChanges, AfterViewInit {
   
   players: Player[] = [];
   selectedPlayer: Player | null = null;
-  newPlayer: Player = { id: '', nombre: '', apellido: '', edad: 0, altura: 0, posicion: '', partidos: 0, img1: '', img2: '', video: '' };
+  newPlayer: Player = { id: '', nombre: '', apellido: '', altura: 0, posicion: '' };
   valueChange: any;   // Variable para mostrar el tipo de dato recibido
   searchText: string = '';
   searchPosition: string = '';
@@ -80,7 +79,7 @@ export class PlayersComponent implements OnInit, OnChanges, AfterViewInit {
   addPlayer(): void {
     if (this.newPlayer.nombre && this.newPlayer.apellido && this.newPlayer.posicion) {
       this.firebaseService.addPlayer(this.newPlayer).then(() => {
-        this.newPlayer = { id: '', nombre: '', apellido: '', edad: 0, altura: 0, posicion: '', partidos: 0, img1: '', img2: '', video: ''  };
+        this.newPlayer = { id: '', nombre: '', apellido: '', altura: 0, posicion: '' };
         this.loadPlayers(); // Recargar lista de jugadores
       });
     }

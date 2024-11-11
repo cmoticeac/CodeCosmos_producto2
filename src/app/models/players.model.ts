@@ -1,10 +1,12 @@
 export interface Player {
-    id: string;
+    idequipo: number;
+    equipo: string;
     nombre: string;
     apellido: string;
     edad: number;
+    sexo: string;
     posicion: string;
-    altura: number;
+    altura: string;
     partidos: number;
     img1: string;
     img2: string;
