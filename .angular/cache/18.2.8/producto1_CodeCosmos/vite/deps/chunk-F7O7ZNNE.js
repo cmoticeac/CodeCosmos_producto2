@@ -1,4 +1,7 @@
 import {
+  getApps
+} from "./chunk-7EG3QRLR.js";
+import {
   Injectable,
   NgZone,
   Observable,
@@ -12,9 +15,6 @@ import {
   ɵɵdefineInjectable,
   ɵɵinject
 } from "./chunk-ZKL6ZUTH.js";
-import {
-  getApps
-} from "./chunk-7EG3QRLR.js";
 
 // node_modules/@angular/fire/fesm2022/angular-fire.mjs
 var VERSION = new Version("ANGULARFIRE2_VERSION");
@@ -223,4 +223,4 @@ export {
   keepUnstableUntilFirst,
   ɵzoneWrap
 };
-//# sourceMappingURL=chunk-5W7HWRYD.js.map
+//# sourceMappingURL=chunk-F7O7ZNNE.js.map

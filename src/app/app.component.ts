@@ -8,25 +8,24 @@ import { InicioComponent } from './inicio/inicio.component';
 import { CommonModule } from '@angular/common';
 import { PLAYER_DATA } from '../data/data';
 
-  
-
  // importaciones para firebase
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../environments/firebase.config";
 import { getDatabase, ref, onValue, Database } from "firebase/database"; 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-  
+import { FirebaseService } from './firebase.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
  
   imports: [ 
     RouterOutlet,  PlayersComponent,    DetailComponent,  MediaComponent, 
-    InicioComponent,  CommonModule,  PlayerFilterPipe,AngularFireDatabaseModule
+    InicioComponent,  CommonModule,  PlayerFilterPipe, AngularFireDatabaseModule, 
   ],
  
-  
+  providers: [FirebaseService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
