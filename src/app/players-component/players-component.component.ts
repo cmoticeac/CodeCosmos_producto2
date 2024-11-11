@@ -21,14 +21,12 @@ import { firebaseConfig } from '../../environments/firebase.config';
   styleUrls: ['./players-component.component.css'],
 })
 export class PlayersComponent implements OnInit, OnChanges { 
+  @Input() inputBDData: Player[] = [];
   players: Player[] = [];
   selectedPlayer: Player | null = null;
-  newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '' , img1: '', img2: '', video:'', edad: 0, sexo: '', partidos: 0};
+  newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0 };
   searchText: string = '';
   searchPosition: string = '';
-   @Input() inputBDData: any; 
-   valueChange: any;   // Variable para mostrar el tipo de dato recibido
-
 
   // Lista de posiciones para el dropdown
   positions: string[] = ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot'];
@@ -37,10 +35,21 @@ export class PlayersComponent implements OnInit, OnChanges {
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
-    this.valueChange = this.inputBDData;  //si inicia
-    this.loadPlayers(); // Cargar jugadores al iniciar
+    this.loadPlayers();
   }
   
+  loadPlayers(): void {
+    this.firebaseService.getPlayers().subscribe(players => {
+      console.log("Datos de jugadores:", players); // Verifica que los datos están llegando aquí
+      this.players = players;
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['inputBDData']) {
+      this.players = changes['inputBDData'].currentValue || [];
+    }
+  }
       ngAfterViewInit() {
         console.log("Valores de jugadores pasados desde el padre:");
         for (const playerId in this.inputBDData) {
@@ -67,19 +76,7 @@ export class PlayersComponent implements OnInit, OnChanges {
    * este evento cada vez que hay un cambio recibido del app.componet( Es el padre)
    * @param changes 
    */
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['inputBDData']) {
-      this.valueChange = typeof changes['inputBDData'].currentValue;
-      this.inputBDData = changes['inputBDData'].currentValue;
-    }
-  } 
-
-  // CRUD: Cargar jugadores desde Firebase 
-  loadPlayers(): void {
-    this.firebaseService.getPlayers().subscribe(players => {
-      this.players = players;
-    });
-  }
+ 
 
   // CRUD: Añadir un nuevo jugador
   // Agregar un nuevo jugador
