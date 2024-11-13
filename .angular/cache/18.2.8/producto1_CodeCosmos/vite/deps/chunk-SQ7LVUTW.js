@@ -1,23 +1,44 @@
 import {
-  getApps
-} from "./chunk-7EG3QRLR.js";
+  deleteApp,
+  getApp,
+  getApps,
+  initializeApp,
+  initializeServerApp,
+  onLog,
+  registerVersion,
+  setLogLevel
+} from "./chunk-LNVSON2M.js";
 import {
+  Inject,
   Injectable,
+  InjectionToken,
+  Injector,
+  NgModule,
   NgZone,
   Observable,
+  Optional,
+  PLATFORM_ID,
+  VERSION,
   Version,
   asyncScheduler,
+  concatMap,
+  distinct,
+  from,
+  makeEnvironmentProviders,
   observeOn,
   queueScheduler,
   setClassMetadata,
   subscribeOn,
   tap,
+  timer,
   ɵɵdefineInjectable,
+  ɵɵdefineInjector,
+  ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-YOYM6UUN.js";
+} from "./chunk-QC5B4LGS.js";
 
 // node_modules/@angular/fire/fesm2022/angular-fire.mjs
-var VERSION = new Version("ANGULARFIRE2_VERSION");
+var VERSION2 = new Version("ANGULARFIRE2_VERSION");
 function ɵgetDefaultInstanceOf(identifier, provided, defaultApp) {
   if (provided) {
     if (provided.length === 1) {
@@ -213,14 +234,111 @@ var ɵzoneWrap = (it, blockUntilFirst) => {
   };
 };
 
+// node_modules/@angular/fire/fesm2022/angular-fire-app.mjs
+var FirebaseApp = class {
+  constructor(app) {
+    return app;
+  }
+};
+var FirebaseApps = class {
+  constructor() {
+    return getApps();
+  }
+};
+var firebaseApp$ = timer(0, 300).pipe(concatMap(() => from(getApps())), distinct());
+function defaultFirebaseAppFactory(provided) {
+  if (provided && provided.length === 1) {
+    return provided[0];
+  }
+  return new FirebaseApp(getApp());
+}
+var PROVIDED_FIREBASE_APPS = new InjectionToken("angularfire2._apps");
+var DEFAULT_FIREBASE_APP_PROVIDER = {
+  provide: FirebaseApp,
+  useFactory: defaultFirebaseAppFactory,
+  deps: [[new Optional(), PROVIDED_FIREBASE_APPS]]
+};
+var FIREBASE_APPS_PROVIDER = {
+  provide: FirebaseApps,
+  deps: [[new Optional(), PROVIDED_FIREBASE_APPS]]
+};
+function firebaseAppFactory(fn) {
+  return (zone, injector) => {
+    const platformId = injector.get(PLATFORM_ID);
+    registerVersion("angularfire", VERSION2.full, "core");
+    registerVersion("angularfire", VERSION2.full, "app");
+    registerVersion("angular", VERSION.full, platformId.toString());
+    const app = zone.runOutsideAngular(() => fn(injector));
+    return new FirebaseApp(app);
+  };
+}
+var FirebaseAppModule = class _FirebaseAppModule {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  constructor(platformId) {
+    registerVersion("angularfire", VERSION2.full, "core");
+    registerVersion("angularfire", VERSION2.full, "app");
+    registerVersion("angular", VERSION.full, platformId.toString());
+  }
+  static ɵfac = function FirebaseAppModule_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _FirebaseAppModule)(ɵɵinject(PLATFORM_ID));
+  };
+  static ɵmod = ɵɵdefineNgModule({
+    type: _FirebaseAppModule
+  });
+  static ɵinj = ɵɵdefineInjector({
+    providers: [DEFAULT_FIREBASE_APP_PROVIDER, FIREBASE_APPS_PROVIDER]
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FirebaseAppModule, [{
+    type: NgModule,
+    args: [{
+      providers: [DEFAULT_FIREBASE_APP_PROVIDER, FIREBASE_APPS_PROVIDER]
+    }]
+  }], () => [{
+    type: Object,
+    decorators: [{
+      type: Inject,
+      args: [PLATFORM_ID]
+    }]
+  }], null);
+})();
+function provideFirebaseApp(fn, ...deps) {
+  return makeEnvironmentProviders([DEFAULT_FIREBASE_APP_PROVIDER, FIREBASE_APPS_PROVIDER, {
+    provide: PROVIDED_FIREBASE_APPS,
+    useFactory: firebaseAppFactory(fn),
+    multi: true,
+    deps: [NgZone, Injector, ɵAngularFireSchedulers, ...deps]
+  }]);
+}
+var deleteApp2 = ɵzoneWrap(deleteApp, true);
+var getApp2 = ɵzoneWrap(getApp, true);
+var getApps2 = ɵzoneWrap(getApps, true);
+var initializeApp2 = ɵzoneWrap(initializeApp, true);
+var initializeServerApp2 = ɵzoneWrap(initializeServerApp, true);
+var onLog2 = ɵzoneWrap(onLog, true);
+var registerVersion2 = ɵzoneWrap(registerVersion, true);
+var setLogLevel2 = ɵzoneWrap(setLogLevel, true);
+
 export {
-  VERSION,
+  VERSION2 as VERSION,
   ɵgetDefaultInstanceOf,
   ɵgetAllInstancesOf,
   ɵAppCheckInstances,
-  ɵAPP_CHECK_PROVIDER_NAME,
   ɵAngularFireSchedulers,
-  keepUnstableUntilFirst,
-  ɵzoneWrap
+  ɵzoneWrap,
+  FirebaseApp,
+  FirebaseApps,
+  firebaseApp$,
+  FirebaseAppModule,
+  provideFirebaseApp,
+  deleteApp2 as deleteApp,
+  getApp2 as getApp,
+  getApps2 as getApps,
+  initializeApp2 as initializeApp,
+  initializeServerApp2 as initializeServerApp,
+  onLog2 as onLog,
+  registerVersion2 as registerVersion,
+  setLogLevel2 as setLogLevel
 };
-//# sourceMappingURL=chunk-SIIMH62L.js.map
+//# sourceMappingURL=chunk-SQ7LVUTW.js.map

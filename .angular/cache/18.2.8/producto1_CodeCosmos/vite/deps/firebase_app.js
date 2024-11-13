@@ -1,4 +1,4 @@
-import "./chunk-PFEPKP7F.js";
+import "./chunk-7O4RGM5B.js";
 import {
   DEFAULT_ENTRY_NAME,
   FirebaseError,
@@ -22,8 +22,8 @@ import {
   onLog,
   registerVersion,
   setLogLevel
-} from "./chunk-7EG3QRLR.js";
-import "./chunk-35ENWJA4.js";
+} from "./chunk-LNVSON2M.js";
+import "./chunk-5K356HEJ.js";
 export {
   FirebaseError,
   SDK_VERSION,

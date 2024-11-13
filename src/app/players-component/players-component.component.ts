@@ -23,10 +23,12 @@ import { firebaseConfig } from '../../environments/firebase.config';
 export class PlayersComponent implements OnInit, OnChanges { 
   @Input() inputBDData: Player[] = [];
   players: Player[] = [];
+  filteredPlayers: Player[] = [];
   selectedPlayer: Player | null = null;
   newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0 };
   searchText: string = '';
   searchPosition: string = '';
+  showNewPlayerForm = false;
 
   // Lista de posiciones para el dropdown
   positions: string[] = ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot'];
@@ -42,35 +44,48 @@ export class PlayersComponent implements OnInit, OnChanges {
     this.firebaseService.getPlayers().subscribe(players => {
       console.log("Datos de jugadores:", players); // Verifica que los datos están llegando aquí
       this.players = players;
+      this.filteredPlayers = players;
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['inputBDData']) {
       this.players = changes['inputBDData'].currentValue || [];
+      this.filteredPlayers = this.players;
     }
   }
-      ngAfterViewInit() {
-        console.log("Valores de jugadores pasados desde el padre:");
-        for (const playerId in this.inputBDData) {
-          if (this.inputBDData.hasOwnProperty(playerId)) {
-            const player = this.inputBDData[playerId];
-            console.log(`Player ${playerId}:`, player);
-          } else {
-            console.log("Error al procesar jugadores");
-          }
+
+   // Función para buscar jugadores según el nombre y la posición
+   buscarJugador(): void {
+    this.filteredPlayers = this.players.filter(player => {
+      const nameMatch = this.searchText ? player.nombre.toLowerCase().includes(this.searchText.toLowerCase()) : true;
+      const positionMatch = this.searchPosition ? player.posicion.toLowerCase() === this.searchPosition.toLowerCase() : true;
+      return nameMatch && positionMatch;
+    });
+  }
+  ngAfterViewInit() {
+    console.log("Valores de jugadores pasados desde el padre:");
+      for (const playerId in this.inputBDData) {
+        if (this.inputBDData.hasOwnProperty(playerId)) {
+          const player = this.inputBDData[playerId];
+          console.log(`Player ${playerId}:`, player);
+        } else {
+          console.log("Error al procesar jugadores");
         }
       }
+  }
   
-      // Seleccionar un jugador para editar
-      selectPlayer(player: Player): void {
-        this.selectedPlayer = { ...player }; // Crear una copia para editar sin modificar original
-      }
+// Seleccionar un jugador para editar
+  selectPlayer(player: Player): void {
+    this.selectedPlayer = { ...player }; // Crear una copia para editar sin modificar original
+  }
 
-      // Deseleccionar el jugador actual
-      deselectPlayer(): void {
-        this.selectedPlayer = null;
-      }
+  deselectPlayer(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.selectedPlayer = null;
+  }
   
   /**
    * este evento cada vez que hay un cambio recibido del app.componet( Es el padre)
@@ -83,7 +98,7 @@ export class PlayersComponent implements OnInit, OnChanges {
   addPlayer(): void {
     this.firebaseService.addPlayer(this.newPlayer).then(() => {
       this.loadPlayers();
-      this.newPlayerForm(); // Resetear el formulario de nuevo jugador
+      this.showNewPlayerForm = false;
     });
   }
 
@@ -94,7 +109,7 @@ export class PlayersComponent implements OnInit, OnChanges {
       });
     }
     newPlayerForm(): void {
-      this.selectedPlayer = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0 };
+      this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '' };
     }
 
       // Actualizar un jugador
@@ -105,4 +120,4 @@ export class PlayersComponent implements OnInit, OnChanges {
     });
   }
 
-}// CIERRE CLASS
+}

@@ -1,7 +1,7 @@
 <div class="col-12">
   <div class="container player-list">
     <div class="card" *ngIf="!selectedPlayer">
-      <div class="card-header">Player List</div>
+      <div class="card-header">Buscador Jugadores</div>
       <div class="card-body">
 
         <!-- Filtros de búsqueda -->
@@ -13,8 +13,73 @@
           </select>
         </div>
 
+      <!-- Botón buscar jugador pipes -->
+      <button type="button" class="btn btn-success mb-3" (click)="buscarJugador()">Buscar jugador</button>
+
+         <!-- Lista de jugadores filtrados -->
+         <div>
+          <div *ngFor="let player of filteredPlayers" class="player-card">
+            <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
+            <p><strong>Name:</strong> {{ player.nombre }}</p>
+            <p><strong>Last Name:</strong> {{ player.apellido }}</p>
+            <p><strong>Position:</strong> {{ player.posicion }}</p>
+            <!-- Otros detalles y acciones -->
+          </div>
+        </div>
+  
         <!-- Botón para añadir un nuevo jugador -->
-        <button type="button" class="btn btn-success mb-3" (click)="newPlayerForm()">New Player</button>
+        <button type="button" class="btn btn-success mb-3" (click)="showNewPlayerForm = true">Nuevo Jugador</button>
+      
+          <!-- Formulario para agregar un nuevo jugador -->
+      <div *ngIf="showNewPlayerForm" class="new-player-form">
+        <h3>Agregar Nuevo Jugador</h3>
+        <form>
+          <div class="mb-3">
+            <label>Nombre:</label>
+            <input [(ngModel)]="newPlayer.nombre" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Apellido:</label>
+            <input [(ngModel)]="newPlayer.apellido" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Posición:</label>
+            <select [(ngModel)]="newPlayer.posicion" class="form-control" required>
+              <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Edad:</label>
+            <input type="number" [(ngModel)]="newPlayer.edad" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Sexo:</label>
+            <input [(ngModel)]="newPlayer.sexo" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Altura:</label>
+            <input type="number" [(ngModel)]="newPlayer.altura" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Partidos:</label>
+            <input type="number" [(ngModel)]="newPlayer.partidos" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Imagen 1 URL:</label>
+            <input [(ngModel)]="newPlayer.img1" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Imagen 2 URL:</label>
+            <input [(ngModel)]="newPlayer.img2" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label>Video URL:</label>
+            <input [(ngModel)]="newPlayer.video" class="form-control" />
+          </div>
+          <button type="button" class="btn btn-success" (click)="addPlayer()">Guardar Jugador</button>
+          <button type="button" class="btn btn-secondary" (click)="showNewPlayerForm = false">Cancelar</button>
+        </form>
+      </div>
 
         <!-- Grid de jugadores (lista de jugadores) -->
         <div>
@@ -23,6 +88,22 @@
             <p><strong>Name:</strong> {{ player.nombre }}</p>
             <p><strong>Last Name:</strong> {{ player.apellido }}</p>
             <p><strong>Position:</strong> {{ player.posicion }}</p>
+
+            <div *ngIf="selectedPlayer === players" class="player-details">
+              <p><strong>Edad:</strong> {{ player.edad }}</p>
+              <p><strong>Sexo:</strong> {{ player.sexo }}</p>
+              <p><strong>Altura:</strong> {{ player.altura }} cm</p>
+              <p><strong>Partidos:</strong> {{ player.partidos }}</p>
+              <img *ngIf="player.img2" [src]="player.img2" alt="Imagen adicional de {{ player.nombre }}" class="player-image">
+              <div *ngIf="player.video">
+                <p><strong>Video:</strong></p>
+                <video width="320" height="240" controls>
+                  <source [src]="player.video" type="video/mp4">
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              </div>
+              <button (click)="deselectPlayer($event)">Cerrar Detalles</button>
+            </div> 
 
             <!-- Icono de borrar -->
             <i class="bi bi-trash3"></i>

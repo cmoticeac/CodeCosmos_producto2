@@ -12,6 +12,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../environments/firebase.config";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { FirebaseService } from './firebase.service';
+import { get } from "firebase/database";
 
 @Component({
   selector: 'app-root',
@@ -44,10 +45,19 @@ export class AppComponent implements OnInit {
 
   generarConexion(): void {
     const playersRef = ref(this.db, 'jugadores');
-    onValue(playersRef, (snapshot) => {
-      const playersData = snapshot.val(); 
-      this.playersData = playersData ? Object.values(playersData) : [];
-      console.log("Jugadores data:", this.playersData);
-    });
+    get(playersRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const playersData = snapshot.val(); 
+          this.playersData = playersData ? Object.values(playersData) : [];
+          console.log("Jugadores data:", this.playersData);
+        } else {
+          console.log("No hay datos disponibles.");
+          this.playersData = [];
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener datos de jugadores:", error);
+      });
   }
 }

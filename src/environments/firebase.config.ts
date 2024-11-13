@@ -3,8 +3,8 @@ export const firebaseConfig = {
   authDomain: "producto2-63d62.firebaseapp.com",
   databaseURL: "https://producto2-63d62-default-rtdb.firebaseio.com",
   projectId: "producto2-63d62",
-  storageBucket: "producto2-63d62.appspot.com",
+  storageBucket: "producto2-63d62.firebasestorage.app",
   messagingSenderId: "549088204019",
-  appId: "1:549088204019:web:901db3ffcd6093d03b1386",
-  measurementId: "G-4LSE5J8MWK"
+  appId: "1:549088204019:web:65790dda1e88fda43b1386",
+  measurementId: "G-70LBQTLNL1"
 };

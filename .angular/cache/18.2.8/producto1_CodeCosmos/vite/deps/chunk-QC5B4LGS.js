@@ -1,18 +1,7 @@
 import {
-  __asyncGenerator,
-  __asyncValues,
-  __await,
-  __awaiter,
-  __extends,
-  __generator,
-  __read,
-  __spreadArray,
-  __values
-} from "./chunk-NTERNHDG.js";
-import {
   __spreadProps,
   __spreadValues
-} from "./chunk-35ENWJA4.js";
+} from "./chunk-5K356HEJ.js";
 
 // node_modules/@angular/core/fesm2022/primitives/signals.mjs
 function defaultEquals(a, b) {
@@ -378,6 +367,249 @@ var WATCH_NODE = (() => {
     cleanupFn: NOOP_CLEANUP_FN
   });
 })();
+
+// node_modules/tslib/tslib.es6.mjs
+var extendStatics = function(d, b) {
+  extendStatics = Object.setPrototypeOf || {
+    __proto__: []
+  } instanceof Array && function(d2, b2) {
+    d2.__proto__ = b2;
+  } || function(d2, b2) {
+    for (var p in b2) if (Object.prototype.hasOwnProperty.call(b2, p)) d2[p] = b2[p];
+  };
+  return extendStatics(d, b);
+};
+function __extends(d, b) {
+  if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+  extendStatics(d, b);
+  function __() {
+    this.constructor = d;
+  }
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+function __rest(s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+}
+function __awaiter(thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function(resolve) {
+      resolve(value);
+    });
+  }
+  return new (P || (P = Promise))(function(resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+}
+function __generator(thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() {
+    return this;
+  }), g;
+  function verb(n) {
+    return function(v) {
+      return step([n, v]);
+    };
+  }
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+    while (g && (g = 0, op[0] && (_ = 0)), _) try {
+      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+      if (y = 0, t) op = [op[0] & 2, t.value];
+      switch (op[0]) {
+        case 0:
+        case 1:
+          t = op;
+          break;
+        case 4:
+          _.label++;
+          return {
+            value: op[1],
+            done: false
+          };
+        case 5:
+          _.label++;
+          y = op[1];
+          op = [0];
+          continue;
+        case 7:
+          op = _.ops.pop();
+          _.trys.pop();
+          continue;
+        default:
+          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+            _ = 0;
+            continue;
+          }
+          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+            _.label = op[1];
+            break;
+          }
+          if (op[0] === 6 && _.label < t[1]) {
+            _.label = t[1];
+            t = op;
+            break;
+          }
+          if (t && _.label < t[2]) {
+            _.label = t[2];
+            _.ops.push(op);
+            break;
+          }
+          if (t[2]) _.ops.pop();
+          _.trys.pop();
+          continue;
+      }
+      op = body.call(thisArg, _);
+    } catch (e) {
+      op = [6, e];
+      y = 0;
+    } finally {
+      f = t = 0;
+    }
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+}
+function __values(o) {
+  var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+  if (m) return m.call(o);
+  if (o && typeof o.length === "number") return {
+    next: function() {
+      if (o && i >= o.length) o = void 0;
+      return {
+        value: o && o[i++],
+        done: !o
+      };
+    }
+  };
+  throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+function __read(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+  } catch (error) {
+    e = {
+      error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+  return ar;
+}
+function __spreadArray(to, from2, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from2.length, ar; i < l; i++) {
+    if (ar || !(i in from2)) {
+      if (!ar) ar = Array.prototype.slice.call(from2, 0, i);
+      ar[i] = from2[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from2));
+}
+function __await(v) {
+  return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+function __asyncGenerator(thisArg, _arguments, generator) {
+  if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+  var g = generator.apply(thisArg, _arguments || []), i, q = [];
+  return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function() {
+    return this;
+  }, i;
+  function awaitReturn(f) {
+    return function(v) {
+      return Promise.resolve(v).then(f, reject);
+    };
+  }
+  function verb(n, f) {
+    if (g[n]) {
+      i[n] = function(v) {
+        return new Promise(function(a, b) {
+          q.push([n, v, a, b]) > 1 || resume(n, v);
+        });
+      };
+      if (f) i[n] = f(i[n]);
+    }
+  }
+  function resume(n, v) {
+    try {
+      step(g[n](v));
+    } catch (e) {
+      settle(q[0][3], e);
+    }
+  }
+  function step(r) {
+    r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r);
+  }
+  function fulfill(value) {
+    resume("next", value);
+  }
+  function reject(value) {
+    resume("throw", value);
+  }
+  function settle(f, v) {
+    if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]);
+  }
+}
+function __asyncValues(o) {
+  if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+  var m = o[Symbol.asyncIterator], i;
+  return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
+    return this;
+  }, i);
+  function verb(n) {
+    i[n] = o[n] && function(v) {
+      return new Promise(function(resolve, reject) {
+        v = o[n](v), settle(resolve, reject, v.done, v.value);
+      });
+    };
+  }
+  function settle(resolve, reject, d, v) {
+    Promise.resolve(v).then(function(v2) {
+      resolve({
+        value: v2,
+        done: d
+      });
+    }, reject);
+  }
+}
 
 // node_modules/rxjs/dist/esm5/internal/util/isFunction.js
 function isFunction(value) {
@@ -3150,112 +3382,6 @@ function scan(accumulator, seed) {
   return operate(scanInternals(accumulator, seed, arguments.length >= 2, true));
 }
 
-// node_modules/rxjs/dist/esm5/internal/operators/share.js
-function share(options) {
-  if (options === void 0) {
-    options = {};
-  }
-  var _a = options.connector, connector = _a === void 0 ? function() {
-    return new Subject();
-  } : _a, _b = options.resetOnError, resetOnError = _b === void 0 ? true : _b, _c = options.resetOnComplete, resetOnComplete = _c === void 0 ? true : _c, _d = options.resetOnRefCountZero, resetOnRefCountZero = _d === void 0 ? true : _d;
-  return function(wrapperSource) {
-    var connection;
-    var resetConnection;
-    var subject;
-    var refCount2 = 0;
-    var hasCompleted = false;
-    var hasErrored = false;
-    var cancelReset = function() {
-      resetConnection === null || resetConnection === void 0 ? void 0 : resetConnection.unsubscribe();
-      resetConnection = void 0;
-    };
-    var reset = function() {
-      cancelReset();
-      connection = subject = void 0;
-      hasCompleted = hasErrored = false;
-    };
-    var resetAndUnsubscribe = function() {
-      var conn = connection;
-      reset();
-      conn === null || conn === void 0 ? void 0 : conn.unsubscribe();
-    };
-    return operate(function(source, subscriber) {
-      refCount2++;
-      if (!hasErrored && !hasCompleted) {
-        cancelReset();
-      }
-      var dest = subject = subject !== null && subject !== void 0 ? subject : connector();
-      subscriber.add(function() {
-        refCount2--;
-        if (refCount2 === 0 && !hasErrored && !hasCompleted) {
-          resetConnection = handleReset(resetAndUnsubscribe, resetOnRefCountZero);
-        }
-      });
-      dest.subscribe(subscriber);
-      if (!connection && refCount2 > 0) {
-        connection = new SafeSubscriber({
-          next: function(value) {
-            return dest.next(value);
-          },
-          error: function(err) {
-            hasErrored = true;
-            cancelReset();
-            resetConnection = handleReset(reset, resetOnError, err);
-            dest.error(err);
-          },
-          complete: function() {
-            hasCompleted = true;
-            cancelReset();
-            resetConnection = handleReset(reset, resetOnComplete);
-            dest.complete();
-          }
-        });
-        innerFrom(source).subscribe(connection);
-      }
-    })(wrapperSource);
-  };
-}
-function handleReset(reset, on) {
-  var args = [];
-  for (var _i = 2; _i < arguments.length; _i++) {
-    args[_i - 2] = arguments[_i];
-  }
-  if (on === true) {
-    reset();
-    return;
-  }
-  if (on === false) {
-    return;
-  }
-  var onSubscriber = new SafeSubscriber({
-    next: function() {
-      onSubscriber.unsubscribe();
-      reset();
-    }
-  });
-  return innerFrom(on.apply(void 0, __spreadArray([], __read(args)))).subscribe(onSubscriber);
-}
-
-// node_modules/rxjs/dist/esm5/internal/operators/shareReplay.js
-function shareReplay(configOrBufferSize, windowTime2, scheduler) {
-  var _a, _b, _c;
-  var bufferSize;
-  var refCount2 = false;
-  if (configOrBufferSize && typeof configOrBufferSize === "object") {
-    _a = configOrBufferSize.bufferSize, bufferSize = _a === void 0 ? Infinity : _a, _b = configOrBufferSize.windowTime, windowTime2 = _b === void 0 ? Infinity : _b, _c = configOrBufferSize.refCount, refCount2 = _c === void 0 ? false : _c, scheduler = configOrBufferSize.scheduler;
-  } else {
-    bufferSize = configOrBufferSize !== null && configOrBufferSize !== void 0 ? configOrBufferSize : Infinity;
-  }
-  return share({
-    connector: function() {
-      return new ReplaySubject(bufferSize, windowTime2, scheduler);
-    },
-    resetOnError: true,
-    resetOnComplete: false,
-    resetOnRefCountZero: refCount2
-  });
-}
-
 // node_modules/rxjs/dist/esm5/internal/operators/skipWhile.js
 function skipWhile(predicate) {
   return operate(function(source, subscriber) {
@@ -3302,15 +3428,6 @@ function switchMap(project, resultSelector) {
       isComplete = true;
       checkComplete();
     }));
-  });
-}
-
-// node_modules/rxjs/dist/esm5/internal/operators/switchMapTo.js
-function switchMapTo(innerObservable, resultSelector) {
-  return isFunction(resultSelector) ? switchMap(function() {
-    return innerObservable;
-  }, resultSelector) : switchMap(function() {
-    return innerObservable;
   });
 }
 
@@ -27050,6 +27167,7 @@ if (typeof ngDevMode !== "undefined" && ngDevMode) {
 
 export {
   SIGNAL,
+  __rest,
   Subscription,
   pipe,
   Observable,
@@ -27091,12 +27209,9 @@ export {
   last2 as last,
   pairwise,
   scan,
-  share,
-  shareReplay,
   skipWhile,
   startWith,
   switchMap,
-  switchMapTo,
   takeUntil,
   tap,
   withLatestFrom,
@@ -27612,4 +27727,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-YOYM6UUN.js.map
+//# sourceMappingURL=chunk-QC5B4LGS.js.map
