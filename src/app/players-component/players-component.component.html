@@ -19,7 +19,15 @@
         <!-- Botón para añadir un nuevo jugador -->
         <button type="button" class="btn btn-success mb-3" (click)="showNewPlayerForm = true">Nuevo Jugador</button>
 
-         <!-- Lista de jugadores filtrados -->
+          <!-- Si hay un jugador seleccionado, muestra solo ese jugador -->
+          <div *ngIf="selectedPlayer" class="player-card">
+            <img [src]="selectedPlayer.img1" alt="{{ selectedPlayer.nombre }}" class="player-image">
+            <p><strong>Name:</strong> {{ selectedPlayer.nombre }}</p>
+            <p><strong>Last Name:</strong> {{ selectedPlayer.apellido }}</p>
+            <p><strong>Position:</strong> {{ selectedPlayer.posicion }}</p>
+            <!-- Otros detalles y acciones -->
+          </div>
+
           <!-- Formulario para agregar un nuevo jugador -->
       <div *ngIf="showNewPlayerForm" class="new-player-form">
         <h3>Agregar Nuevo Jugador</h3>
@@ -80,6 +88,7 @@
             <p><strong>Position:</strong> {{ player.posicion }}</p>
 
             <div *ngIf="selectedPlayer === players" class="player-details">
+              <p><strong>Id:</strong> {{player.id}}</p>
               <p><strong>Edad:</strong> {{ player.edad }}</p>
               <p><strong>Sexo:</strong> {{ player.sexo }}</p>
               <p><strong>Altura:</strong> {{ player.altura }} cm</p>
@@ -95,13 +104,13 @@
               <button (click)="deselectPlayer($event)">Cerrar Detalles</button>
             </div> 
 
-            <!-- Icono de borrar -->
-            <i class="bi bi-trash3"></i>
-            <button class="btn btn-danger btn-sm" (click)="deletePlayer(player.id)" data-bs-toggle="tooltip" title="Delete">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-              </svg>              
-            </button>
+          <!-- Icono de borrar -->
+          <i class="bi bi-trash3"></i>
+          <button class="btn btn-danger btn-sm" (click)="deletePlayer(player.id)" data-bs-toggle="tooltip" title="Delete">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+              <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+            </svg>              
+          </button>
 
             <!-- Selección para editar -->
             <button class="btn btn-primary btn-sm" (click)="selectPlayer(player)" data-bs-toggle="tooltip" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

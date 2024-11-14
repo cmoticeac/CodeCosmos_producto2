@@ -23,7 +23,7 @@ export class PlayersComponent implements OnInit, OnChanges {
   @Input() inputBDData: Player[] = [];
   players: Player[] = [];
   filteredPlayers: Player[] = [];
-  selectedPlayer: Player | null = null;
+  selectedPlayer: any;
   newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0 };
   searchText: string = '';
   searchPosition: string = '';
@@ -104,10 +104,12 @@ export class PlayersComponent implements OnInit, OnChanges {
 
    // CRUD: Eliminar un jugador
    deletePlayer(playerId: number): void {
+    console.log("Intentando eliminar jugador con id:", playerId);
     this.firebaseService.deletePlayer(playerId).then(() => {
       this.loadPlayers(); // Recargar lista de jugadores
       });
     }
+
     newPlayerForm(): void {
       this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '' };
     }

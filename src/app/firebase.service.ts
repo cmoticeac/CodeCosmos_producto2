@@ -15,7 +15,7 @@ export class FirebaseService {
   // Obtener todos los jugadores
   getPlayers(): Observable<Player[]> {
     const playersCollection = collection(this.firestore, this.collectionPath);
-    return collectionData(playersCollection, { idField: 'idequipo' }) as Observable<Player[]>;
+    return collectionData(playersCollection) as Observable<Player[]>;
   }
 
   // Agregar un nuevo jugador
@@ -34,9 +34,10 @@ export class FirebaseService {
 
   // Eliminar un jugador
   async deletePlayer(playerId: number): Promise<void> {
-    const playerDoc = doc(this.firestore, `${this.collectionPath}/${playerId}`);
+    const playerDoc = doc(this.firestore, `${this.collectionPath}/${playerId.toString()}`);
     await deleteDoc(playerDoc);
   }
+  
 }
 
 /*
