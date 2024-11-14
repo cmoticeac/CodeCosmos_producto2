@@ -10,4 +10,5 @@ export interface Player {
     img1: string;
     img2: string;
     video: string;
+    firestoreId: string;
   }  

@@ -24,7 +24,7 @@ export class PlayersComponent implements OnInit, OnChanges {
   players: Player[] = [];
   filteredPlayers: Player[] = [];
   selectedPlayer: any;
-  newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0 };
+  newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0, firestoreId: '' };
   searchText: string = '';
   searchPosition: string = '';
   showNewPlayerForm = false;
@@ -42,12 +42,13 @@ export class PlayersComponent implements OnInit, OnChanges {
 
   loadPlayers(): void {
     this.firebaseService.getPlayers().subscribe(players => {
-      console.log("Datos de jugadores:", players); // Verifica que los datos están llegando aquí
+      console.log("Datos de jugadores:", players); // Confirma si `firestoreId` aparece en cada jugador
       this.players = players;
       this.filteredPlayers = players;
     });
-  }
-
+  }  
+  
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['inputBDData']) {
       this.players = changes['inputBDData'].currentValue || [];
@@ -103,15 +104,21 @@ export class PlayersComponent implements OnInit, OnChanges {
   }
 
    // CRUD: Eliminar un jugador
-   deletePlayer(playerId: number): void {
-    console.log("Intentando eliminar jugador con id:", playerId);
-    this.firebaseService.deletePlayer(playerId).then(() => {
-      this.loadPlayers(); // Recargar lista de jugadores
-      });
+   deletePlayer(playerFirestoreId: string): void {
+    if (!playerFirestoreId) {
+      console.error("Error: firestoreId es undefined");
+      return;
     }
+    console.log("Intentando eliminar jugador con firestoreId:", playerFirestoreId);
+    this.firebaseService.deletePlayer(playerFirestoreId)
+      .then(() => {
+        this.loadPlayers(); // Recargar lista de jugadores
+      })
+      .catch(error => console.error("Error eliminando jugador:", error));
+  }  
 
     newPlayerForm(): void {
-      this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '' };
+      this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '', firestoreId: '' };
     }
 
       // Actualizar un jugador
