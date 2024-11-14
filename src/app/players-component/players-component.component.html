@@ -11,25 +11,15 @@
             <option value="">All Positions</option>
             <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
           </select>
+        
         </div>
 
-      <!-- Botón buscar jugador pipes -->
-      <button type="button" class="btn btn-success mb-3" (click)="buscarJugador()">Buscar jugador</button>
-
-         <!-- Lista de jugadores filtrados -->
-         <div>
-          <div *ngFor="let player of filteredPlayers" class="player-card">
-            <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
-            <p><strong>Name:</strong> {{ player.nombre }}</p>
-            <p><strong>Last Name:</strong> {{ player.apellido }}</p>
-            <p><strong>Position:</strong> {{ player.posicion }}</p>
-            <!-- Otros detalles y acciones -->
-          </div>
-        </div>
-  
+        <!-- Botón buscar jugador pipes -->
+        <button type="button" class="btn btn-success mb-3" (click)="buscarJugador()">Buscar jugador</button>
         <!-- Botón para añadir un nuevo jugador -->
         <button type="button" class="btn btn-success mb-3" (click)="showNewPlayerForm = true">Nuevo Jugador</button>
-      
+
+         <!-- Lista de jugadores filtrados -->
           <!-- Formulario para agregar un nuevo jugador -->
       <div *ngIf="showNewPlayerForm" class="new-player-form">
         <h3>Agregar Nuevo Jugador</h3>

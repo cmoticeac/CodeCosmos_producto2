@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { DetailComponent } from '../detail-component/detail-component.component';
 import { PlayerFilterPipe } from '../pipes/player-filter.pipe';
 import { FirebaseService } from '../firebase.service';
-import { firebaseConfig } from '../../environments/firebase.config';
 
 @Component({
   selector: 'app-players-component',
@@ -34,12 +33,13 @@ export class PlayersComponent implements OnInit, OnChanges {
   positions: string[] = ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot'];
   //constructor(private playerService: PlayerService) {}
   
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService) {
+  }
 
   ngOnInit(): void {
     this.loadPlayers();
   }
-  
+
   loadPlayers(): void {
     this.firebaseService.getPlayers().subscribe(players => {
       console.log("Datos de jugadores:", players); // Verifica que los datos están llegando aquí

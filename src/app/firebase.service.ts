@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, setDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
+import { getDatabase, update, ref } from "firebase/database";
 import { Observable } from 'rxjs';
 import { Player } from '../app/models/players.model';
 
@@ -7,7 +8,7 @@ import { Player } from '../app/models/players.model';
   providedIn: 'root'
 })
 export class FirebaseService {
-  private collectionPath = 'players'; // Ruta de la colección en Firestore
+  private collectionPath = 'jugadores'; // Ruta de la colección en Firestore
 
   constructor(private firestore: Firestore) {}
 
@@ -25,8 +26,10 @@ export class FirebaseService {
 
   // Actualizar un jugador existente
   async updatePlayer(player: Player): Promise<void> {
-    const playerDoc = doc(this.firestore, `${this.collectionPath}/${player.id}`);
-    await updateDoc(playerDoc, { ...player });
+    let db = getDatabase();
+    let updateDoc: any = {};
+    updateDoc["/" + this.collectionPath + "/" + player.id] =  player;
+    return update(ref(db), updateDoc);
   }
 
   // Eliminar un jugador
