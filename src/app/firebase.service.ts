@@ -3,22 +3,20 @@ import { Firestore, collection, collectionData, addDoc, doc, setDoc, updateDoc, 
 import { getDatabase, update, ref } from "firebase/database";
 import { Observable } from 'rxjs';
 import { Player } from '../app/models/players.model';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   private collectionPath = 'jugadores'; // Ruta de la colección en Firestore
-
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private db: AngularFireDatabase) {}
 
   // Obtener todos los jugadores
   getPlayers(): Observable<Player[]> {
-    const playersCollection = collection(this.firestore, this.collectionPath);
-    return collectionData(playersCollection, { idField: 'firestoreId' }) as Observable<Player[]>;
+    return this.db.list<Player>("jugadores").valueChanges();
   }
   
-
   // Agregar un nuevo jugador
   async addPlayer(player: Player): Promise<void> {
     const playersCollection = collection(this.firestore, this.collectionPath);

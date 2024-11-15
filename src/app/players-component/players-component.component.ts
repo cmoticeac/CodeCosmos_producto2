@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DetailComponent } from '../detail-component/detail-component.component';
 import { PlayerFilterPipe } from '../pipes/player-filter.pipe';
 import { FirebaseService } from '../firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-players-component',
@@ -21,7 +22,7 @@ import { FirebaseService } from '../firebase.service';
 })
 export class PlayersComponent implements OnInit, OnChanges { 
   @Input() inputBDData: Player[] = [];
-  players: Player[] = [];
+  players$!: Observable<Player[]>;
   filteredPlayers: Player[] = [];
   selectedPlayer: any;
   newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0, firestoreId: '' };
@@ -37,32 +38,25 @@ export class PlayersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.loadPlayers();
+    this.players$ = this.firebaseService.getPlayers();
   }
 
-  loadPlayers(): void {
-    this.firebaseService.getPlayers().subscribe(players => {
-      console.log("Datos de jugadores:", players); // Confirma si `firestoreId` aparece en cada jugador
-      this.players = players;
-      this.filteredPlayers = players;
-    });
-  }  
-  
-  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['inputBDData']) {
-      this.players = changes['inputBDData'].currentValue || [];
-      this.filteredPlayers = this.players;
+//      this.players = changes['inputBDData'].currentValue || [];
+//      this.filteredPlayers = this.players;
     }
   }
 
    // Función para buscar jugadores según el nombre y la posición
    buscarJugador(): void {
+    /*
     this.filteredPlayers = this.players.filter(player => {
       const nameMatch = this.searchText ? player.nombre.toLowerCase().includes(this.searchText.toLowerCase()) : true;
       const positionMatch = this.searchPosition ? player.posicion.toLowerCase() === this.searchPosition.toLowerCase() : true;
       return nameMatch && positionMatch;
     });
+    */
   }
   ngAfterViewInit() {
     console.log("Valores de jugadores pasados desde el padre:");
@@ -98,7 +92,7 @@ export class PlayersComponent implements OnInit, OnChanges {
   // Agregar un nuevo jugador
   addPlayer(): void {
     this.firebaseService.addPlayer(this.newPlayer).then(() => {
-      this.loadPlayers();
+//      this.loadPlayers();
       this.showNewPlayerForm = false;
     });
   }
@@ -112,7 +106,7 @@ export class PlayersComponent implements OnInit, OnChanges {
     console.log("Intentando eliminar jugador con firestoreId:", playerFirestoreId);
     this.firebaseService.deletePlayer(playerFirestoreId)
       .then(() => {
-        this.loadPlayers(); // Recargar lista de jugadores
+//        this.loadPlayers(); // Recargar lista de jugadores
       })
       .catch(error => console.error("Error eliminando jugador:", error));
   }  
@@ -124,7 +118,7 @@ export class PlayersComponent implements OnInit, OnChanges {
       // Actualizar un jugador
   updatePlayers(player: Player): void {
     this.firebaseService.updatePlayer(player).then(() => {
-      this.loadPlayers();
+//      this.loadPlayers();
       this.deselectPlayer();
     });
   }

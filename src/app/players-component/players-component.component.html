@@ -3,7 +3,6 @@
     <div class="card" *ngIf="!selectedPlayer">
       <div class="card-header">Buscador Jugadores</div>
       <div class="card-body">
-
         <!-- Filtros de búsqueda -->
         <div class="search-filters">
           <input [(ngModel)]="searchText" placeholder="Search by name" class="form-control mb-2" />
@@ -81,13 +80,16 @@
 
         <!-- Grid de jugadores (lista de jugadores) -->
         <div>
-          <div *ngFor="let player of players | playerFilter: searchText : searchPosition" class="player-card">
+          <!--
+          <div *ngFor="let player of players$ | async | playerFilter: searchText : searchPosition" class="player-card">
+          -->
+            <div *ngFor="let player of players$ | async" class="player-card">
             <img [src]="player.img1" alt="{{ player.nombre }}" class="player-image">
             <p><strong>Name:</strong> {{ player.nombre }}</p>
             <p><strong>Last Name:</strong> {{ player.apellido }}</p>
             <p><strong>Position:</strong> {{ player.posicion }}</p>
 
-            <div *ngIf="selectedPlayer === players" class="player-details">
+            <div *ngIf="selectedPlayer === players$" class="player-details">
               <p><strong>Id:</strong> {{player.id}}</p>
               <p><strong>Edad:</strong> {{ player.edad }}</p>
               <p><strong>Sexo:</strong> {{ player.sexo }}</p>
