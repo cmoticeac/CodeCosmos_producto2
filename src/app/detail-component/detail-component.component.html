@@ -20,12 +20,73 @@
         <div class="mb-3 row">
           <label class="col-sm-3 col-form-label">Position:</label>
           <div class="col-sm-9">
-            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.posicion" class="form-control"
-              placeholder="Position">
+            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.posicion" class="form-control">
+              <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
+            </select>
           </div>
         </div>
 
-        <!-- Botón de guardar -->
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Edad:</label>
+          <div class="col-sm-9">
+            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.edad" class="form-control"
+              placeholder="Edad">
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Altura:</label>
+          <div class="col-sm-9">
+            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.altura" class="form-control"
+              placeholder="Altura">
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Partidos:</label>
+          <div class="col-sm-9">
+            <input [readonly]="readonly" [(ngModel)]="selectedPlayer.partidos" class="form-control"
+              placeholder="Partidos">
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Genero:</label>
+          <div class="col-sm-9">
+            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.sexo"  class="form-control">
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+              <option value="O">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Imagen</label>
+          <div class="col-sm-9">
+            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.img1" class="form-control">
+              <option *ngFor="let img of images" [value]="img.link">{{ img.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Video</label>
+          <div class="col-sm-9">
+            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.video" class="form-control">
+              <option *ngFor="let video of videos" [value]="video.link">{{ video.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="selectedPlayer.video">
+          <p><strong>Video:</strong></p>
+          <video width="320" height="240" controls>
+            <source [src]="selectedPlayer.video" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+          </video>
+        </div>
+                  <!-- Botón de guardar -->
         <!-- Selección para editar -->
         <button *ngIf="readonly" type="button" class="btn btn-success" (click)="toggleEdit()">Edit</button>
 
