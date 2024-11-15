@@ -98,17 +98,8 @@ export class PlayersComponent implements OnInit, OnChanges {
   }
 
    // CRUD: Eliminar un jugador
-   deletePlayer(playerFirestoreId: string): void {
-    if (!playerFirestoreId) {
-      console.error("Error: firestoreId es undefined");
-      return;
-    }
-    console.log("Intentando eliminar jugador con firestoreId:", playerFirestoreId);
-    this.firebaseService.deletePlayer(playerFirestoreId)
-      .then(() => {
-//        this.loadPlayers(); // Recargar lista de jugadores
-      })
-      .catch(error => console.error("Error eliminando jugador:", error));
+   deletePlayer(player: Player): void {
+    this.firebaseService.deletePlayer(player)
   }  
 
     newPlayerForm(): void {

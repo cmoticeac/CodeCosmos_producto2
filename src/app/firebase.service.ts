@@ -26,15 +26,14 @@ export class FirebaseService {
   // Actualizar un jugador existente
   async updatePlayer(player: Player): Promise<void> {
     let db = getDatabase();
-    let updateDoc: any = {};
-    updateDoc["/" + this.collectionPath + "/" + player.id] =  player;
-    return update(ref(db), updateDoc);
+    this.db.list("jugadores").update("/" + player.id, player);
+
   }
 
   // Eliminar un jugador
-  async deletePlayer(playerFirestoreId: string): Promise<void> {
-    const playerDoc = doc(this.firestore, `${this.collectionPath}/${playerFirestoreId}`);
-    await deleteDoc(playerDoc);
+  deletePlayer(player: Player) {
+    let db = getDatabase();
+    this.db.list<Player>("jugadores").remove("/" + player.id);
   }    
   
 }
