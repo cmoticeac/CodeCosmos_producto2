@@ -1,8 +1,9 @@
 import {
   __async,
+  __export,
   __spreadProps,
   __spreadValues
-} from "./chunk-5K356HEJ.js";
+} from "./chunk-35ENWJA4.js";
 
 // node_modules/@firebase/util/dist/index.esm2017.js
 var CONSTANTS = {
@@ -991,8 +992,36 @@ function implementsAnyMethods(obj, methods) {
 }
 function noop() {
 }
+var validateArgCount = function(fnName, minCount, maxCount, argCount) {
+  let argError;
+  if (argCount < minCount) {
+    argError = "at least " + minCount;
+  } else if (argCount > maxCount) {
+    argError = maxCount === 0 ? "none" : "no more than " + maxCount;
+  }
+  if (argError) {
+    const error = fnName + " failed: Was called with " + argCount + (argCount === 1 ? " argument." : " arguments.") + " Expects " + argError + ".";
+    throw new Error(error);
+  }
+};
 function errorPrefix(fnName, argName) {
   return `${fnName} failed: ${argName} argument `;
+}
+function validateCallback(fnName, argumentName, callback, optional) {
+  if (optional && !callback) {
+    return;
+  }
+  if (typeof callback !== "function") {
+    throw new Error(errorPrefix(fnName, argumentName) + "must be a valid function.");
+  }
+}
+function validateContextObject(fnName, argumentName, context, optional) {
+  if (optional && !context) {
+    return;
+  }
+  if (typeof context !== "object" || context === null) {
+    throw new Error(errorPrefix(fnName, argumentName) + "must be a valid context object.");
+  }
 }
 var stringToByteArray = function(str) {
   const out = [];
@@ -1041,6 +1070,12 @@ var stringLength = function(str) {
   }
   return p;
 };
+var uuidv4 = function() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = Math.random() * 16 | 0, v = c === "x" ? r : r & 3 | 8;
+    return v.toString(16);
+  });
+};
 var MAX_VALUE_MILLIS = 4 * 60 * 60 * 1e3;
 function getModularInstance(service) {
   if (service && service._delegate) {
@@ -1049,6 +1084,33 @@ function getModularInstance(service) {
     return service;
   }
 }
+
+// node_modules/@firebase/app/dist/esm/index.esm2017.js
+var index_esm2017_exports = {};
+__export(index_esm2017_exports, {
+  FirebaseError: () => FirebaseError,
+  SDK_VERSION: () => SDK_VERSION,
+  _DEFAULT_ENTRY_NAME: () => DEFAULT_ENTRY_NAME2,
+  _addComponent: () => _addComponent,
+  _addOrOverwriteComponent: () => _addOrOverwriteComponent,
+  _apps: () => _apps,
+  _clearComponents: () => _clearComponents,
+  _components: () => _components,
+  _getProvider: () => _getProvider,
+  _isFirebaseApp: () => _isFirebaseApp,
+  _isFirebaseServerApp: () => _isFirebaseServerApp,
+  _registerComponent: () => _registerComponent,
+  _removeServiceInstance: () => _removeServiceInstance,
+  _serverApps: () => _serverApps,
+  deleteApp: () => deleteApp,
+  getApp: () => getApp,
+  getApps: () => getApps,
+  initializeApp: () => initializeApp,
+  initializeServerApp: () => initializeServerApp,
+  onLog: () => onLog,
+  registerVersion: () => registerVersion,
+  setLogLevel: () => setLogLevel2
+});
 
 // node_modules/@firebase/component/dist/esm/index.esm2017.js
 var Component = class {
@@ -2471,6 +2533,8 @@ export {
   base64Encode,
   base64Decode,
   deepCopy,
+  deepExtend,
+  getGlobal,
   getDefaultEmulatorHost,
   getDefaultEmulatorHostnameAndPort,
   getExperimentalSetting,
@@ -2478,6 +2542,7 @@ export {
   createMockUserToken,
   getUA,
   isMobileCordova,
+  isNode,
   isCloudflareWorker,
   isBrowserExtension,
   isReactNative,
@@ -2501,9 +2566,13 @@ export {
   extractQuerystring,
   Sha1,
   createSubscribe,
+  validateArgCount,
   errorPrefix,
+  validateCallback,
+  validateContextObject,
   stringToByteArray,
   stringLength,
+  uuidv4,
   getModularInstance,
   Component,
   Provider,
@@ -2530,7 +2599,8 @@ export {
   deleteApp,
   registerVersion,
   onLog,
-  setLogLevel2 as setLogLevel
+  setLogLevel2 as setLogLevel,
+  index_esm2017_exports
 };
 /*! Bundled license information:
 
@@ -2705,8 +2775,6 @@ export {
    * See the License for the specific language governing permissions and
    * limitations under the License.
    *)
-
-@firebase/util/dist/index.esm2017.js:
   (**
    * @license
    * Copyright 2019 Google LLC
@@ -2846,4 +2914,4 @@ export {
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-LNVSON2M.js.map
+//# sourceMappingURL=chunk-7EG3QRLR.js.map

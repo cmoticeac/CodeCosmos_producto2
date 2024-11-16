@@ -1,17 +1,20 @@
 import {
   AuthInstances
-} from "./chunk-XYSR6BWR.js";
+} from "./chunk-SOA3U2EA.js";
+import "./chunk-UXNI2VDG.js";
 import {
   FirebaseApp,
-  FirebaseApps,
+  FirebaseApps
+} from "./chunk-S6J6DC2Y.js";
+import {
   VERSION,
   ɵAngularFireSchedulers,
   ɵAppCheckInstances,
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-SQ7LVUTW.js";
-import "./chunk-7O4RGM5B.js";
+} from "./chunk-UQJTAQ7X.js";
+import "./chunk-PFEPKP7F.js";
 import {
   Component,
   FirebaseError,
@@ -30,34 +33,37 @@ import {
   isIndexedDBAvailable,
   isSafari,
   registerVersion
-} from "./chunk-LNVSON2M.js";
+} from "./chunk-7EG3QRLR.js";
 import {
   InjectionToken,
   Injector,
   NgModule,
   NgZone,
-  Observable,
   Optional,
+  makeEnvironmentProviders,
+  setClassMetadata,
+  ɵɵdefineInjector,
+  ɵɵdefineNgModule
+} from "./chunk-IXRTPHDO.js";
+import {
+  Observable,
   concatMap,
   distinct,
   distinctUntilChanged,
   filter,
   from,
-  makeEnvironmentProviders,
   map,
   pairwise,
   pipe,
   scan,
-  setClassMetadata,
   startWith,
-  timer,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule
-} from "./chunk-QC5B4LGS.js";
+  timer
+} from "./chunk-I6S27ITP.js";
+import "./chunk-NTERNHDG.js";
 import {
   __async,
   __superGet
-} from "./chunk-5K356HEJ.js";
+} from "./chunk-35ENWJA4.js";
 
 // node_modules/@firebase/webchannel-wrapper/dist/bloom-blob/esm/bloom_blob_es2018.js
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};

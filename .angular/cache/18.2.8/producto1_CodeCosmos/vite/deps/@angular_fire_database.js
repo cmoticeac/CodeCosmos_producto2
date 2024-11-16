@@ -1,17 +1,4 @@
-import {
-  AuthInstances
-} from "./chunk-XYSR6BWR.js";
-import {
-  FirebaseApp,
-  FirebaseApps,
-  VERSION,
-  ɵAngularFireSchedulers,
-  ɵAppCheckInstances,
-  ɵgetAllInstancesOf,
-  ɵgetDefaultInstanceOf,
-  ɵzoneWrap
-} from "./chunk-SQ7LVUTW.js";
-import "./chunk-7O4RGM5B.js";
+import "./chunk-LISTFJ4E.js";
 import {
   DataSnapshot,
   OnDisconnect,
@@ -66,36 +53,56 @@ import {
   update,
   validatePathString,
   validateWritablePath
-} from "./chunk-27SUXSJJ.js";
+} from "./chunk-XYELTP44.js";
+import {
+  AuthInstances
+} from "./chunk-SOA3U2EA.js";
+import "./chunk-UXNI2VDG.js";
+import {
+  FirebaseApp,
+  FirebaseApps
+} from "./chunk-S6J6DC2Y.js";
+import {
+  VERSION,
+  ɵAngularFireSchedulers,
+  ɵAppCheckInstances,
+  ɵgetAllInstancesOf,
+  ɵgetDefaultInstanceOf,
+  ɵzoneWrap
+} from "./chunk-UQJTAQ7X.js";
+import "./chunk-PFEPKP7F.js";
 import {
   registerVersion
-} from "./chunk-LNVSON2M.js";
+} from "./chunk-7EG3QRLR.js";
 import {
   InjectionToken,
   Injector,
   NgModule,
   NgZone,
-  Observable,
   Optional,
+  makeEnvironmentProviders,
+  setClassMetadata,
+  ɵɵdefineInjector,
+  ɵɵdefineNgModule
+} from "./chunk-IXRTPHDO.js";
+import {
+  Observable,
   concatMap,
   delay,
   distinct,
   distinctUntilChanged,
   from,
-  makeEnvironmentProviders,
   map,
   merge,
   of,
   scan,
-  setClassMetadata,
   skipWhile,
   switchMap,
   timer,
-  withLatestFrom,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule
-} from "./chunk-QC5B4LGS.js";
-import "./chunk-5K356HEJ.js";
+  withLatestFrom
+} from "./chunk-I6S27ITP.js";
+import "./chunk-NTERNHDG.js";
+import "./chunk-35ENWJA4.js";
 
 // node_modules/rxfire/database/index.esm.js
 var _a;

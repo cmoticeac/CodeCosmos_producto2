@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 })
 export class PlayersComponent implements OnInit, OnChanges { 
   @Input() inputBDData: Player[] = [];
-  players$!: Observable<Player[]>;
+  players: Player[] = [];
   filteredPlayers: Player[] = [];
   selectedPlayer: any;
   newPlayer: Player = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0, firestoreId: '' };
@@ -38,26 +38,32 @@ export class PlayersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.players$ = this.firebaseService.getPlayers();
+    this.loadPlayers(); // Carga los datos al inicializar el componente
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['inputBDData']) {
-//      this.players = changes['inputBDData'].currentValue || [];
-//      this.filteredPlayers = this.players;
+      this.filteredPlayers = this.inputBDData || [];
     }
   }
 
-   // Función para buscar jugadores según el nombre y la posición
+   // Buscar jugadores por nombre y posición
    buscarJugador(): void {
-    /*
     this.filteredPlayers = this.players.filter(player => {
       const nameMatch = this.searchText ? player.nombre.toLowerCase().includes(this.searchText.toLowerCase()) : true;
       const positionMatch = this.searchPosition ? player.posicion.toLowerCase() === this.searchPosition.toLowerCase() : true;
       return nameMatch && positionMatch;
     });
-    */
   }
+  
+  loadPlayers(): void {
+    this.firebaseService.getPlayers().subscribe(players => {
+      console.log('Jugadores recuperados desde Firebase:', players);
+      this.players = players || [];
+      this.filteredPlayers = [...this.players]; // Aplica filtro inicial si es necesario
+    });
+  }
+   
   ngAfterViewInit() {
     console.log("Valores de jugadores pasados desde el padre:");
       for (const playerId in this.inputBDData) {
@@ -92,24 +98,41 @@ export class PlayersComponent implements OnInit, OnChanges {
   // Agregar un nuevo jugador
   addPlayer(): void {
     this.firebaseService.addPlayer(this.newPlayer).then(() => {
-//      this.loadPlayers();
+      console.log('Jugador agregado exitosamente. Recargando lista...');
+      this.loadPlayers(); // Recarga la lista de jugadores
+      this.newPlayer = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0, firestoreId: '' }; // Limpia el formulario
       this.showNewPlayerForm = false;
+    }).catch(error => {
+      console.error('Error al agregar jugador:', error);
     });
   }
+    
+  
 
    // CRUD: Eliminar un jugador
-   deletePlayer(player: Player): void {
-    this.firebaseService.deletePlayer(player)
-  }  
-
-    newPlayerForm(): void {
-      this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '', firestoreId: '' };
+  deletePlayer(player: Player): void {
+    if (!player.firestoreId) {
+      console.error('Error: firestoreId es undefined');
+      return;
     }
+    this.firebaseService.deletePlayer(player.firestoreId).then(() => {
+      this.loadPlayers(); // Recarga los jugadores
+    }).catch(error => {
+      console.error('Error al eliminar jugador:', error);
+    });
+  }
+  
+   
+
+  newPlayerForm(): void {
+    this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '', firestoreId: '' };
+    this.showNewPlayerForm = true;
+  }
 
       // Actualizar un jugador
   updatePlayers(player: Player): void {
     this.firebaseService.updatePlayer(player).then(() => {
-//      this.loadPlayers();
+      this.loadPlayers(); // Recargar lista de jugadores después de actualizar
       this.deselectPlayer();
     });
   }
