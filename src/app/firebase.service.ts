@@ -38,22 +38,20 @@ export class FirebaseService {
   
   // Agregar un nuevo jugador
   async addPlayer(player: Player): Promise<void> {
-    const playersRef = ref(this.db, this.collectionPath);
-    const newPlayerRef = push(playersRef); // Genera una clave única
-    const completePlayer = { ...player, firestoreId: newPlayerRef.key }; // Agrega el ID único
-    await set(newPlayerRef, completePlayer);
-  }
+    const playersRef = ref(this.db, this.collectionPath); // Referencia a la colección
+    const newPlayerRef = push(playersRef); // Crea un nodo único
+    await set(newPlayerRef, player); // Guarda los datos del jugador
+  }  
   
-  
-
   // Actualizar un jugador existente
   async updatePlayer(player: Player): Promise<void> {
     if (!player.firestoreId) {
       console.error('firestoreId es undefined');
       return;
     }
-    const playerRef = ref(this.db, `${this.collectionPath}/${player.firestoreId}`);
-    await update(playerRef, player);
+    const playersRef = ref(this.db, this.collectionPath);
+    const newPlayerRef = push(playersRef);
+    await set(newPlayerRef, player);
   }
   
   

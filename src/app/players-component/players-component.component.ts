@@ -95,20 +95,22 @@ export class PlayersComponent implements OnInit, OnChanges {
  
 
   // CRUD: Añadir un nuevo jugador
-  // Agregar un nuevo jugador
   addPlayer(): void {
+    if (!this.newPlayer.nombre || !this.newPlayer.apellido) {
+      console.error('Nombre y apellido son obligatorios');
+      return;
+    }
+    console.log("Añadiendo nuevo jugador:", this.newPlayer);
     this.firebaseService.addPlayer(this.newPlayer).then(() => {
-      console.log('Jugador agregado exitosamente. Recargando lista...');
-      this.loadPlayers(); // Recarga la lista de jugadores
-      this.newPlayer = { id: 0, nombre: '', apellido: '', altura: 0, posicion: '', img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0, firestoreId: '' }; // Limpia el formulario
+      console.log('Jugador añadido exitosamente');
+      this.loadPlayers(); // Recargar lista
       this.showNewPlayerForm = false;
     }).catch(error => {
-      console.error('Error al agregar jugador:', error);
+      console.error('Error al añadir jugador:', error);
     });
   }
-    
   
-
+  
    // CRUD: Eliminar un jugador
   deletePlayer(player: Player): void {
     if (!player.firestoreId) {
@@ -117,13 +119,12 @@ export class PlayersComponent implements OnInit, OnChanges {
     }
     this.firebaseService.deletePlayer(player.firestoreId).then(() => {
       this.loadPlayers(); // Recarga los jugadores
+      this.cancelNewPlayer();
     }).catch(error => {
       console.error('Error al eliminar jugador:', error);
     });
   }
   
-   
-
   newPlayerForm(): void {
     this.newPlayer = { id: 0, nombre: '', apellido: '', edad: 0, sexo: '', posicion: '', altura: 0, partidos: 0, img1: '', img2: '', video: '', firestoreId: '' };
     this.showNewPlayerForm = true;
@@ -136,5 +137,14 @@ export class PlayersComponent implements OnInit, OnChanges {
       this.deselectPlayer();
     });
   }
+
+  cancelNewPlayer(): void {
+    this.newPlayer = { 
+      id: 0, nombre: '', apellido: '', altura: 0, posicion: '', 
+      img1: '', img2: '', video: '', edad: 0, sexo: '', partidos: 0, firestoreId: '' 
+    }; // Limpia el formulario
+    this.showNewPlayerForm = false; // Cierra el formulario
+  }
+  
 
 }

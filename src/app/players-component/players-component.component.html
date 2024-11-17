@@ -26,45 +26,45 @@
         <form>
           <div class="mb-3">
             <label>Nombre:</label>
-            <input [(ngModel)]="newPlayer.nombre" class="form-control" required />
+            <input [(ngModel)]="newPlayer.nombre" name="nombre" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Apellido:</label>
-            <input [(ngModel)]="newPlayer.apellido" class="form-control" required />
+            <input [(ngModel)]="newPlayer.apellido" name="apellido" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Posición:</label>
-            <select [(ngModel)]="newPlayer.posicion" class="form-control" required>
+            <select [(ngModel)]="newPlayer.posicion" name="posicion" class="form-control" required>
               <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
             </select>
           </div>
           <div class="mb-3">
             <label>Edad:</label>
-            <input type="number" [(ngModel)]="newPlayer.edad" class="form-control" required />
+            <input type="number" [(ngModel)]="newPlayer.edad" name="edad" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Sexo:</label>
-            <input [(ngModel)]="newPlayer.sexo" class="form-control" required />
+            <input [(ngModel)]="newPlayer.sexo" name="sexo" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Altura:</label>
-            <input type="number" [(ngModel)]="newPlayer.altura" class="form-control" required />
+            <input type="number" [(ngModel)]="newPlayer.altura" name="altura" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Partidos:</label>
-            <input type="number" [(ngModel)]="newPlayer.partidos" class="form-control" required />
+            <input type="number" [(ngModel)]="newPlayer.partidos" name="partidos" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Imagen 1 URL:</label>
-            <input [(ngModel)]="newPlayer.img1" class="form-control" required />
+            <input [(ngModel)]="newPlayer.img1" name="img1" class="form-control" required />
           </div>
           <div class="mb-3">
             <label>Imagen 2 URL:</label>
-            <input [(ngModel)]="newPlayer.img2" class="form-control" />
+            <input [(ngModel)]="newPlayer.img2" name="img2" class="form-control" />
           </div>
           <div class="mb-3">
             <label>Video URL:</label>
-            <input [(ngModel)]="newPlayer.video" class="form-control" />
+            <input [(ngModel)]="newPlayer.video" name="video" class="form-control" />
           </div>
           <button type="button" class="btn btn-success" (click)="addPlayer()">Guardar Jugador</button>
           <button type="button" class="btn btn-secondary" (click)="showNewPlayerForm = false">Cancelar</button>
