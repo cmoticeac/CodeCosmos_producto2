@@ -56,7 +56,7 @@
           </div>
           <div class="mb-3">
             <label>Imagen 1 URL:</label>
-            <input [(ngModel)]="newPlayer.img1" name="img1" class="form-control" required />
+            <input type="file" (change)="onNewPlayerImageUpload($event)" class="form-control" />
           </div>
           <div class="mb-3">
             <label>Imagen 2 URL:</label>
@@ -64,7 +64,7 @@
           </div>
           <div class="mb-3">
             <label>Video URL:</label>
-            <input [(ngModel)]="newPlayer.video" name="video" class="form-control" />
+            <input type="file" (change)="onNewPlayerVideoUpload($event)" class="form-control" />
           </div>
           <button type="button" class="btn btn-success" (click)="addPlayer()">Guardar Jugador</button>
           <button type="button" class="btn btn-secondary" (click)="showNewPlayerForm = false">Cancelar</button>

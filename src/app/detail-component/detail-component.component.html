@@ -57,13 +57,10 @@
           </div>
         </div>
 
-
         <div class="mb-3 row">
           <label class="col-sm-3 col-form-label">Imagen 1 URL:</label>
           <div class="col-sm-9">
-            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.img1" class="form-control">
-              <option *ngFor="let img of images" [value]="img.link">{{ img.name }}</option>
-            </select>
+            <input type="file" class="form-control" (change)="onImageUpload($event)" />
           </div>
         </div>
 
@@ -76,18 +73,17 @@
           </div>
         </div>
 
-        <div class="mb-3 row">
-          <label class="col-sm-3 col-form-label">Video URL:</label>
+        <!-- Subida de video -->
+        <div class="mb-3 row" *ngIf="!readonly">
+          <label class="col-sm-3 col-form-label">Subir Video:</label>
           <div class="col-sm-9">
-            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.video" class="form-control">
-              <option *ngFor="let video of videos" [value]="video.link">{{ video.name }}</option>
-            </select>
+            <input type="file" class="form-control" (change)="onVideoUpload($event)" />
           </div>
         </div>
+
                   <!-- Botón de guardar -->
         <!-- Selección para editar -->
         <button *ngIf="readonly" type="button" class="btn btn-success" (click)="toggleEdit()">Editar</button>
-
         <button *ngIf="!readonly" type="button" class="btn btn-success" (click)="savePlayer()">Guardar</button>
         <button type="button" class="btn btn-success" (click)="closeDetail()">Cerrar</button>
       </div>

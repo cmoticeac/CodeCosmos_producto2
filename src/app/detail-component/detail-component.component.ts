@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-detail-component',
@@ -23,16 +24,19 @@ images: any[] = [
   {"link": "assets/imagenes/player06_01.png", "name": "Player 06"}
 
 ];
+
+@Input() selectedPlayer: any = null;
+@Output() closeDetailEvent = new EventEmitter<void>();
+@Output() savePlayerEvent = new EventEmitter<any>();
+readonly: boolean = true;
+videos: any[] = [];
+
+constructor(private firebaseService: FirebaseService) {}
+
   toggleEdit() {
     this.readonly = !this.readonly;
   }
   
-  @Input() selectedPlayer: any = null;
-  @Output() closeDetailEvent = new EventEmitter<void>();
-  @Output() savePlayerEvent = new EventEmitter<any>();
-  readonly: boolean = true;
-  videos: any[] = [];
-
   ngOnInit(): void {
     this.videos.push({ "link": "assets/videos/player01.mp4", "name": "Player 01"});
     this.videos.push({ "link": "assets/videos/player02.mp4", "name": "Player 02"});
@@ -42,6 +46,24 @@ images: any[] = [
     this.videos.push({ "link": "assets/videos/player06.mp4", "name": "Player 06"});
   }
 
+  onImageUpload(event: any): void {
+    const file = event.target.files[0];
+    if (file && this.selectedPlayer.firestoreId) {
+      this.firebaseService.uploadFileAndUpdateDatabase(this.selectedPlayer.firestoreId, file, 'image')
+        .then(() => console.log('Imagen actualizada correctamente.'))
+        .catch(error => console.error('Error al subir la imagen:', error));
+    }
+  }
+
+  onVideoUpload(event: any): void {
+    const file = event.target.files[0];
+    if (file && this.selectedPlayer.firestoreId) {
+      this.firebaseService.uploadFileAndUpdateDatabase(this.selectedPlayer.firestoreId, file, 'video')
+        .then(() => console.log('Video actualizado correctamente.'))
+        .catch(error => console.error('Error al subir el video:', error));
+    }
+  }
+  
   closeDetail() {
     this.closeDetailEvent.emit();
   }

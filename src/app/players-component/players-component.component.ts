@@ -146,5 +146,22 @@ export class PlayersComponent implements OnInit, OnChanges {
     this.showNewPlayerForm = false; // Cierra el formulario
   }
   
-
+  onNewPlayerImageUpload(event: any): void {
+    const file = event.target.files[0];
+    if (file && this.newPlayer.firestoreId) {
+      this.firebaseService.uploadFileAndUpdateDatabase(this.newPlayer.firestoreId, file, 'image')
+        .then(() => console.log('Imagen subida correctamente.'))
+        .catch(error => console.error('Error al subir la imagen:', error));
+    }
+  }
+  
+  onNewPlayerVideoUpload(event: any): void {
+    const file = event.target.files[0];
+    if (file && this.newPlayer.firestoreId) {
+      this.firebaseService.uploadFileAndUpdateDatabase(this.newPlayer.firestoreId, file, 'video')
+        .then(() => console.log('Video subido correctamente.'))
+        .catch(error => console.error('Error al subir el video:', error));
+    }
+  }  
+  
 }

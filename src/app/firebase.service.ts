@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, setDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
-import { getDatabase, update } from "firebase/database";
-import { Database, ref, set, get, remove, onValue, push } from '@angular/fire/database';
+import { Database, onValue, push, ref, remove, set, update } from '@angular/fire/database';
+import { Storage, ref as storageRef, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { Player } from '../app/models/players.model';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -12,7 +12,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 export class FirebaseService {
   private collectionPath = 'jugadores'; // Ruta en Realtime Database
 
-  constructor(private db: Database) {}
+  constructor(private db: Database, private storage: Storage) {}
 
   // Obtener todos los jugadores
   getPlayers(): Observable<Player[]> {
@@ -65,6 +65,28 @@ export class FirebaseService {
     }
     const playerRef = ref(this.db, `${this.collectionPath}/${playerId}`);
     await remove(playerRef);
+  }  
+  
+  async uploadFileAndUpdateDatabase(playerId: string, file: File, type: 'image' | 'video'): Promise<void> {
+    try {
+      const path = type === 'image' ? 'images' : 'videos';
+      const fileStorageRef = storageRef(this.storage, `${path}/${file.name}`);
+  
+      // Subir archivo al Storage
+      await uploadBytes(fileStorageRef, file);
+      const downloadURL = await getDownloadURL(fileStorageRef);
+      console.log(`Archivo subido: ${downloadURL}`);
+  
+      // Actualizar la URL en Realtime Database
+      const playerDbRef = ref(this.db, `jugadores/${playerId}`);
+      const updateData = type === 'image' ? { img1: downloadURL } : { video: downloadURL };
+  
+      await update(playerDbRef, updateData);
+      console.log(`URL actualizada en la base de datos.`);
+    } catch (error) {
+      console.error('Error al subir archivo:', error);
+      throw error;
+    }
   }  
   
 }
