@@ -78,14 +78,6 @@
             </select>
           </div>
         </div>
-
-        <div *ngIf="selectedPlayer.video">
-          <p><strong>Video:</strong></p>
-          <video width="320" height="240" controls>
-            <source [src]="selectedPlayer.video" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
-          </video>
-        </div>
                   <!-- Botón de guardar -->
         <!-- Selección para editar -->
         <button *ngIf="readonly" type="button" class="btn btn-success" (click)="toggleEdit()">Edit</button>
