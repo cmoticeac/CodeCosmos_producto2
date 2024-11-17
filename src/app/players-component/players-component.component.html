@@ -81,6 +81,12 @@
       <p><strong>Apellido:</strong> {{ player.apellido }}</p>
       <p><strong>Posición:</strong> {{ player.posicion }}</p>
       <!-- Botones de acción -->
+      <button class="btn btn-info btn-sm" (click)="viewDetails(player)" data-bs-toggle="modal" data-bs-target="#viewDetailsModal" title="Ver Detalles">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+        </svg>
+      </button>
       <button class="btn btn-primary btn-sm" (click)="selectPlayer(player)" data-bs-toggle="tooltip" title="Editar">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -95,6 +101,35 @@
     </div>
   </div>
 </div>
+
+    <!-- Modal de Ver Detalles -->
+<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewDetailsModalLabel">Detalles del Jugador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Nombre:</strong> {{ viewOnlyPlayer?.nombre }}</p>
+        <p><strong>Apellido:</strong> {{ viewOnlyPlayer?.apellido }}</p>
+        <p><strong>Posición:</strong> {{ viewOnlyPlayer?.posicion }}</p>
+        <p><strong>Edad:</strong> {{ viewOnlyPlayer?.edad }}</p>
+        <p><strong>Sexo:</strong> {{ viewOnlyPlayer?.sexo }}</p>
+        <p><strong>Altura:</strong> {{ viewOnlyPlayer?.altura }}</p>
+        <p><strong>Partidos:</strong> {{ viewOnlyPlayer?.partidos }}</p>
+        <p><strong>Imagen:</strong></p>
+        <img [src]="viewOnlyPlayer?.img1 || 'default-image.jpg'" alt="{{ viewOnlyPlayer?.nombre }}" class="img-fluid">
+        <p><strong>Video:</strong></p>
+        <video [src]="viewOnlyPlayer?.video" controls width="100%"></video>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <!-- Detalle del jugador seleccionado (edición) -->
     <div *ngIf="selectedPlayer">

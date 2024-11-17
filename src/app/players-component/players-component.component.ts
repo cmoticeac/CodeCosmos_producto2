@@ -29,6 +29,7 @@ export class PlayersComponent implements OnInit, OnChanges {
   searchText: string = '';
   searchPosition: string = '';
   showNewPlayerForm = false;
+  viewOnlyPlayer: Player | null = null;
 
   // Lista de posiciones para el dropdown
   positions: string[] = ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot'];
@@ -164,4 +165,11 @@ export class PlayersComponent implements OnInit, OnChanges {
     }
   }  
   
+  viewDetails(player: Player): void {
+    this.viewOnlyPlayer = player;
+  }
+  
+  closeViewDetails(): void {
+    this.viewOnlyPlayer = null;
+  }
 }

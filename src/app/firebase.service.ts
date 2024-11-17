@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Player } from '../app/models/players.model';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
+
+import { ref as dbRef, update as dbUpdate } from "firebase/database";
 @Injectable({
   providedIn: 'root'
 })
@@ -69,9 +71,10 @@ export class FirebaseService {
   
   async uploadFileAndUpdateDatabase(playerId: string, file: File, type: 'image' | 'video'): Promise<void> {
     try {
-      const path = type === 'image' ? 'images' : 'videos';
+     
+      const path = type === 'image' ? 'assets/imagenes' : 'assets/videos';
       const fileStorageRef = storageRef(this.storage, `${path}/${file.name}`);
-  
+ 
       // Subir archivo al Storage
       await uploadBytes(fileStorageRef, file);
       const downloadURL = await getDownloadURL(fileStorageRef);
@@ -87,6 +90,9 @@ export class FirebaseService {
       console.error('Error al subir archivo:', error);
       throw error;
     }
-  }  
-  
+     
+      
+
+    }
+
 }
