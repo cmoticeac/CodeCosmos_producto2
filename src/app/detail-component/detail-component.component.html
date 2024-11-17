@@ -5,20 +5,20 @@
       <div class="player-card">
         <div class="mb-3 row">
           <!-- Campos editables -->
-          <label class="col-sm-3 col-form-label">Name:</label>
+          <label class="col-sm-3 col-form-label">Nombre:</label>
           <div class="col-sm-9">
             <input [readonly]="readonly" [(ngModel)]="selectedPlayer.nombre" class="form-control" placeholder="Name" />
           </div>
         </div>
         <div class="mb-3 row">
-          <label class="col-sm-3 col-form-label">Last Name:</label>
+          <label class="col-sm-3 col-form-label">Apellido:</label>
           <div class="col-sm-9">
             <input [readonly]="readonly" [(ngModel)]="selectedPlayer.apellido" class="form-control"
               placeholder="Last Name">
           </div>
         </div>
         <div class="mb-3 row">
-          <label class="col-sm-3 col-form-label">Position:</label>
+          <label class="col-sm-3 col-form-label">Posición:</label>
           <div class="col-sm-9">
             <select [disabled]="readonly" [(ngModel)]="selectedPlayer.posicion" class="form-control">
               <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
@@ -31,6 +31,13 @@
           <div class="col-sm-9">
             <input [readonly]="readonly" [(ngModel)]="selectedPlayer.edad" class="form-control"
               placeholder="Edad">
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Sexo:</label>
+          <div class="col-sm-9">
+            <input [disabled]="readonly" [(ngModel)]="selectedPlayer.sexo"  class="form-control">
           </div>
         </div>
 
@@ -50,19 +57,9 @@
           </div>
         </div>
 
-        <div class="mb-3 row">
-          <label class="col-sm-3 col-form-label">Genero:</label>
-          <div class="col-sm-9">
-            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.sexo"  class="form-control">
-              <option value="M">Masculino</option>
-              <option value="F">Femenino</option>
-              <option value="O">Otro</option>
-            </select>
-          </div>
-        </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-3 col-form-label">Imagen</label>
+          <label class="col-sm-3 col-form-label">Imagen 1 URL:</label>
           <div class="col-sm-9">
             <select [disabled]="readonly" [(ngModel)]="selectedPlayer.img1" class="form-control">
               <option *ngFor="let img of images" [value]="img.link">{{ img.name }}</option>
@@ -71,7 +68,16 @@
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-3 col-form-label">Video</label>
+          <label class="col-sm-3 col-form-label">Imagen 2 URL:</label>
+          <div class="col-sm-9">
+            <select [disabled]="readonly" [(ngModel)]="selectedPlayer.img2" class="form-control">
+              <option *ngFor="let img of images" [value]="img.link">{{ img.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Video URL:</label>
           <div class="col-sm-9">
             <select [disabled]="readonly" [(ngModel)]="selectedPlayer.video" class="form-control">
               <option *ngFor="let video of videos" [value]="video.link">{{ video.name }}</option>
@@ -80,10 +86,10 @@
         </div>
                   <!-- Botón de guardar -->
         <!-- Selección para editar -->
-        <button *ngIf="readonly" type="button" class="btn btn-success" (click)="toggleEdit()">Edit</button>
+        <button *ngIf="readonly" type="button" class="btn btn-success" (click)="toggleEdit()">Editar</button>
 
-        <button *ngIf="!readonly" type="button" class="btn btn-success" (click)="savePlayer()">Save</button>
-        <button type="button" class="btn btn-success" (click)="closeDetail()">Close</button>
+        <button *ngIf="!readonly" type="button" class="btn btn-success" (click)="savePlayer()">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="closeDetail()">Cerrar</button>
       </div>
     </div>
   </div>
