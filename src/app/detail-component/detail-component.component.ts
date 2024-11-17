@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule
   styleUrls: ['./detail-component.component.css'],
 })
 export class DetailComponent {
-positions: any[] = [ "Base", "Alero", "Defensa", "Poste" ];
+positions: any[] = [ "Base", "Escolta", "Alero", "Ala-pívot", "Pívot" ];
 images: any[] = [
   {"link": "assets/imagenes/player01_01.png", "name": "Player 01"},
   {"link": "assets/imagenes/player02_01.png", "name": "Player 02"},

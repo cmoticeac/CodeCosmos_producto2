@@ -49,9 +49,10 @@ export class FirebaseService {
       console.error('firestoreId es undefined');
       return;
     }
-    const playersRef = ref(this.db, this.collectionPath);
-    const newPlayerRef = push(playersRef);
-    await set(newPlayerRef, player);
+    // Referencia al nodo existente
+  const playerRef = ref(this.db, `${this.collectionPath}/${player.firestoreId}`);
+  // Actualizar el nodo existente
+  await set(playerRef, player);
   }
   
   
