@@ -14,27 +14,6 @@ nav {
   background-color: #DFF2EB;
 }
 
-.btn {
-  border-color: #7AB2D3;
-  background-color: #4A628A;
-}
-
-.botonespaginainicio {
-  padding-top: 35px;
-}
-
-.detallesequipo {
-  padding-top: 35px;
-}
-
-.busquedajugadores {
-  padding-top: 35px;
-}
-
-.informacionjugador {
-  padding-top: 35px;
-}  
-
 .footerweb {
   padding-top: 35px;
   padding-bottom: 35px;
@@ -42,4 +21,64 @@ nav {
 
 .linea {
   display : inline-block;
+}
+
+.btn {
+  border-color: #7AB2D3;
+  background-color: #4A628A;
+  align-items: center;
+}
+
+/*Detail component CSS */
+
+input:read-only {
+  background-color: #e0e0e0; /* Light grey */
+  cursor: not-allowed; /* Optional: Change cursor to indicate non-editable */
+}
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px; /* Limitar el ancho máximo del video */
+}
+
+.video-container video {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: auto; /* Mantiene la relación de aspecto */
+  object-fit: cover;
+}
+
+/*Players component CSS */
+
+.player-list {
+  display: flex;
+  justify-content: center;
+  padding-top: 35px;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta la cantidad de columnas según el tamaño de pantalla */
+  gap: 20px;
+  padding: 20px;
+}
+
+.player-image {
+  width: 40%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/*Players y Detail component CSS */
+
+.player-card {
+  background-color: #DFF2EB;
+  border: 1px solid #B9E5E8;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  min-width: 700px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

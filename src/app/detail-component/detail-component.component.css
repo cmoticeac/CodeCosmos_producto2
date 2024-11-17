@@ -1,4 +1,4 @@
-.jugador-nombre {
+/* .jugador-nombre {
   color: blue;
   text-decoration: underline;
   cursor: pointer;
@@ -6,32 +6,4 @@
 
 .jugador-nombre:hover {
   color: darkblue;
-}
-
-.player-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  min-width: 700px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-input:read-only {
-  background-color: #e0e0e0; /* Light grey */
-  cursor: not-allowed; /* Optional: Change cursor to indicate non-editable */
-}
-.video-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px; /* Limitar el ancho máximo del video */
-}
-
-.video-container video {
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: auto; /* Mantiene la relación de aspecto */
-  object-fit: cover;
-}
+} */

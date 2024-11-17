@@ -1,6 +1,6 @@
 import {
   getApps
-} from "./chunk-7EG3QRLR.js";
+} from "./chunk-H2V42W5W.js";
 import {
   Injectable,
   NgZone,
@@ -8,7 +8,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjectable,
   ɵɵinject
-} from "./chunk-IXRTPHDO.js";
+} from "./chunk-CEXP5ZO2.js";
 import {
   Observable,
   asyncScheduler,
@@ -16,7 +16,7 @@ import {
   queueScheduler,
   subscribeOn,
   tap
-} from "./chunk-I6S27ITP.js";
+} from "./chunk-3COQGF7T.js";
 
 // node_modules/@angular/fire/fesm2022/angular-fire.mjs
 var VERSION = new Version("ANGULARFIRE2_VERSION");
@@ -220,9 +220,7 @@ export {
   ɵgetDefaultInstanceOf,
   ɵgetAllInstancesOf,
   ɵAppCheckInstances,
-  ɵAPP_CHECK_PROVIDER_NAME,
   ɵAngularFireSchedulers,
-  keepUnstableUntilFirst,
   ɵzoneWrap
 };
-//# sourceMappingURL=chunk-UQJTAQ7X.js.map
+//# sourceMappingURL=chunk-3ZUBCNTE.js.map

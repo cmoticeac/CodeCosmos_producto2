@@ -1,11 +1,10 @@
 import {
   AuthInstances
-} from "./chunk-SOA3U2EA.js";
-import "./chunk-UXNI2VDG.js";
+} from "./chunk-VWRDPM4R.js";
 import {
   FirebaseApp,
   FirebaseApps
-} from "./chunk-S6J6DC2Y.js";
+} from "./chunk-BW4ST7LL.js";
 import {
   VERSION,
   ɵAngularFireSchedulers,
@@ -13,8 +12,8 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-UQJTAQ7X.js";
-import "./chunk-PFEPKP7F.js";
+} from "./chunk-3ZUBCNTE.js";
+import "./chunk-PTVIMG44.js";
 import {
   Component,
   FirebaseError,
@@ -33,7 +32,7 @@ import {
   isIndexedDBAvailable,
   isSafari,
   registerVersion
-} from "./chunk-7EG3QRLR.js";
+} from "./chunk-H2V42W5W.js";
 import {
   InjectionToken,
   Injector,
@@ -44,7 +43,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-IXRTPHDO.js";
+} from "./chunk-CEXP5ZO2.js";
 import {
   Observable,
   concatMap,
@@ -58,8 +57,7 @@ import {
   scan,
   startWith,
   timer
-} from "./chunk-I6S27ITP.js";
-import "./chunk-NTERNHDG.js";
+} from "./chunk-3COQGF7T.js";
 import {
   __async,
   __superGet

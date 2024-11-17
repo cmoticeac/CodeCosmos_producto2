@@ -992,36 +992,8 @@ function implementsAnyMethods(obj, methods) {
 }
 function noop() {
 }
-var validateArgCount = function(fnName, minCount, maxCount, argCount) {
-  let argError;
-  if (argCount < minCount) {
-    argError = "at least " + minCount;
-  } else if (argCount > maxCount) {
-    argError = maxCount === 0 ? "none" : "no more than " + maxCount;
-  }
-  if (argError) {
-    const error = fnName + " failed: Was called with " + argCount + (argCount === 1 ? " argument." : " arguments.") + " Expects " + argError + ".";
-    throw new Error(error);
-  }
-};
 function errorPrefix(fnName, argName) {
   return `${fnName} failed: ${argName} argument `;
-}
-function validateCallback(fnName, argumentName, callback, optional) {
-  if (optional && !callback) {
-    return;
-  }
-  if (typeof callback !== "function") {
-    throw new Error(errorPrefix(fnName, argumentName) + "must be a valid function.");
-  }
-}
-function validateContextObject(fnName, argumentName, context, optional) {
-  if (optional && !context) {
-    return;
-  }
-  if (typeof context !== "object" || context === null) {
-    throw new Error(errorPrefix(fnName, argumentName) + "must be a valid context object.");
-  }
 }
 var stringToByteArray = function(str) {
   const out = [];
@@ -1069,12 +1041,6 @@ var stringLength = function(str) {
     }
   }
   return p;
-};
-var uuidv4 = function() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-    const r = Math.random() * 16 | 0, v = c === "x" ? r : r & 3 | 8;
-    return v.toString(16);
-  });
 };
 var MAX_VALUE_MILLIS = 4 * 60 * 60 * 1e3;
 function getModularInstance(service) {
@@ -2542,7 +2508,6 @@ export {
   createMockUserToken,
   getUA,
   isMobileCordova,
-  isNode,
   isCloudflareWorker,
   isBrowserExtension,
   isReactNative,
@@ -2566,13 +2531,9 @@ export {
   extractQuerystring,
   Sha1,
   createSubscribe,
-  validateArgCount,
   errorPrefix,
-  validateCallback,
-  validateContextObject,
   stringToByteArray,
   stringLength,
-  uuidv4,
   getModularInstance,
   Component,
   Provider,
@@ -2775,6 +2736,8 @@ export {
    * See the License for the specific language governing permissions and
    * limitations under the License.
    *)
+
+@firebase/util/dist/index.esm2017.js:
   (**
    * @license
    * Copyright 2019 Google LLC
@@ -2914,4 +2877,4 @@ export {
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-7EG3QRLR.js.map
+//# sourceMappingURL=chunk-H2V42W5W.js.map

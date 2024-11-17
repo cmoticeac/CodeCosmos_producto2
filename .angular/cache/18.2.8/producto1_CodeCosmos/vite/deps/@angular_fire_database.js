@@ -1,4 +1,3 @@
-import "./chunk-LISTFJ4E.js";
 import {
   DataSnapshot,
   OnDisconnect,
@@ -53,15 +52,14 @@ import {
   update,
   validatePathString,
   validateWritablePath
-} from "./chunk-XYELTP44.js";
+} from "./chunk-CSFM4MC7.js";
 import {
   AuthInstances
-} from "./chunk-SOA3U2EA.js";
-import "./chunk-UXNI2VDG.js";
+} from "./chunk-VWRDPM4R.js";
 import {
   FirebaseApp,
   FirebaseApps
-} from "./chunk-S6J6DC2Y.js";
+} from "./chunk-BW4ST7LL.js";
 import {
   VERSION,
   ɵAngularFireSchedulers,
@@ -69,11 +67,11 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-UQJTAQ7X.js";
-import "./chunk-PFEPKP7F.js";
+} from "./chunk-3ZUBCNTE.js";
+import "./chunk-PTVIMG44.js";
 import {
   registerVersion
-} from "./chunk-7EG3QRLR.js";
+} from "./chunk-H2V42W5W.js";
 import {
   InjectionToken,
   Injector,
@@ -84,7 +82,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-IXRTPHDO.js";
+} from "./chunk-CEXP5ZO2.js";
 import {
   Observable,
   concatMap,
@@ -100,8 +98,7 @@ import {
   switchMap,
   timer,
   withLatestFrom
-} from "./chunk-I6S27ITP.js";
-import "./chunk-NTERNHDG.js";
+} from "./chunk-3COQGF7T.js";
 import "./chunk-35ENWJA4.js";
 
 // node_modules/rxfire/database/index.esm.js
